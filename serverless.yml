@@ -5,6 +5,9 @@ provider:
   name: aws
   runtime: nodejs14.x
 
+plugins:
+  - serverless-esbuild
+
 functions:
   api:
     handler: handler.handler
