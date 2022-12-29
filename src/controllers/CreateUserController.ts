@@ -21,7 +21,7 @@ export class CreateUserController implements Controller {
     private documentValidator: IDocumentValidatorProvider
   ) {}
 
-  async execute(request: CreateUserService.Request): Promise<HttpResponse> {
+  async execute(request: CreateUserController.Request): Promise<HttpResponse> {
     const required = ['name', 'email', 'location', 'password', 'document'];
 
     for (const field of required) {
@@ -60,7 +60,7 @@ export class CreateUserController implements Controller {
   }
 }
 
-export namespace CreateUserService {
+export namespace CreateUserController {
   export type Request = {
     name: string;
     location: string;
