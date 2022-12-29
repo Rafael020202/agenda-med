@@ -21,7 +21,7 @@ export class SignUpController implements Controller {
     private documentValidator: IDocumentValidatorProvider
   ) {}
 
-  async execute(request: CreateUserController.Request): Promise<HttpResponse> {
+  async handle(request: CreateUserController.Request): Promise<HttpResponse> {
     const required = ['name', 'email', 'location', 'password', 'document'];
 
     for (const field of required) {

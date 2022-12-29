@@ -15,7 +15,7 @@ export class LoginController implements Controller {
     private encrypterProvider: IEncrypterProvider
   ) {}
 
-  async execute(request: LoginController.Request): Promise<HttpResponse> {
+  async handle(request: LoginController.Request): Promise<HttpResponse> {
     const required = ['email', 'password'];
 
     for (const field of required) {
