@@ -10,7 +10,7 @@ export const expressRouteDecorator = (controller: Controller) => {
       ...(req.query || {}),
     };
 
-    const result = await controller.execute(request);
+    const result = await controller.handle(request);
 
     if (result.status >= 200 && result.status <= 299) {
       return res.status(result.status).json(result.body);
