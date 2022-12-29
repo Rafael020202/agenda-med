@@ -16,7 +16,7 @@ import {
 export class CreateUserController implements Controller {
   constructor(
     private userRepository: IUserRepository,
-    private hasProvider: IHashProvider,
+    private hashProvider: IHashProvider,
     private emailValidator: IEmailValidatorProvider,
     private documentValidator: IDocumentValidatorProvider
   ) {}
@@ -45,7 +45,7 @@ export class CreateUserController implements Controller {
     }
 
     const { email, name, document, location, password } = request;
-    const hashedPassword = await this.hasProvider.hash(password, 8);
+    const hashedPassword = await this.hashProvider.hash(password, 8);
     const createdUser = await this.userRepository.add({
       email,
       name,
