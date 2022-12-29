@@ -15,7 +15,10 @@ export const expressRouteDecorator = (controller: Controller) => {
     if (result.status >= 200 && result.status <= 299) {
       return res.status(result.status).json(result.body);
     } else {
-      return res.status(result.status).json({ message: result.body.message });
+      return res.status(result.status).json({
+        message: result.body.message,
+        code: result.body.code,
+      });
     }
   };
 };
