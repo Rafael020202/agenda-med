@@ -1,2 +1,1 @@
-export * from './SignUpFactory';
-export * from './LoginFactory';
+export * from './controllers';

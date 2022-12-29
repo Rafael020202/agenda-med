@@ -6,7 +6,7 @@ import {
   CpfCnpjValidatorProvider,
 } from '@/infra/providers';
 
-export const makeSignUp = () => {
+export const makeSignUpController = () => {
   const userRepository = new DynamoUserRepository();
   const bcryptProvider = new BcryptProvider();
   const emailValidatorProvider = new EmailValidatorProvider();
