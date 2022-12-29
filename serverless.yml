@@ -7,12 +7,18 @@ provider:
   stage: ${opt:stage, 'dev'}
   environment:
     USERS_TABLE: ${self:custom.UsersTable.name}
+    INFO_SIMPLES_BASE_URL: https://api.infosimples.com/api/v2
+    INFO_SIMPLES_TOKEN: QPBspihj4172CQVC3edlJH3C09LhzxxhPaTcXpZo
+    VERIFY_CRM_QUEUE_URL: ${self:custom.VerifyCrmQueue.url}
+    JWT_SECRET: 'Kvgto33az'
   iamRoleStatements:
     - ${file(src/config/aws/iam/UsersTableIam.yml):UsersTableIAM}
+    - ${file(src/config/aws/iam/VerifyCrmQueueIam.yml):VerifyCrmQueueIAM}
 
 resources:
   Resources:
     UsersTable: ${file(src/config/aws/resources/UsersTableResource.yml):UsersTable}
+    VerifyCrmQueue: ${file(src/config/aws/resources/VerifyCrmQueueResource.yml):VerifyCrmQueue}
 
 plugins:
   - serverless-esbuild
@@ -20,6 +26,7 @@ plugins:
 functions:
   api:
     handler: handler.handler
+    timeout: 25
     events:
       - httpApi: '*'
 
@@ -27,6 +34,10 @@ custom:
   UsersTable:
     name: !Ref UsersTable
     arn: !GetAtt UsersTable.Arn
+  VerifyCrmQueue:
+    name: VerifyCrmQueue-${self:provider.stage}
+    arn: !GetAtt VerifyCrmQueue.Arn
+    url: !Ref VerifyCrmQueue
   esbuild:
     bundle: true
     minify: false

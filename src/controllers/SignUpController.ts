@@ -18,7 +18,8 @@ export class SignUpController implements Controller {
     private userRepository: IUserRepository,
     private hashProvider: IHashProvider,
     private emailValidator: IEmailValidatorProvider,
-    private documentValidator: IDocumentValidatorProvider
+    private cpfValidator: IDocumentValidatorProvider,
+    private crmValidator: IDocumentValidatorProvider
   ) {}
 
   async handle(request: CreateUserController.Request): Promise<HttpResponse> {
@@ -34,7 +35,12 @@ export class SignUpController implements Controller {
       return badRequest(new InvalidParamError('email'));
     }
 
-    if (!this.documentValidator.isCpfValid(request.document)) {
+    if (
+      !(
+        request.is_doctor && (await this.crmValidator.isValid(request.document))
+      ) &&
+      !this.cpfValidator.isValid(request.document)
+    ) {
       return badRequest(new InvalidParamError('document'));
     }
 
@@ -67,6 +73,7 @@ export namespace CreateUserController {
     email: string;
     password: string;
     document: string;
+    is_doctor: boolean;
   };
 
   export type Response = boolean;

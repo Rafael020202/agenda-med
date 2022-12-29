@@ -1,3 +1,5 @@
 node_modules
 .serverless
 *lock.json
+*.js
+*.map

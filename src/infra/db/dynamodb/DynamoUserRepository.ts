@@ -12,8 +12,9 @@ export class DynamoUserRepository implements IUserRepository {
   ): Promise<IUserRepository.add['Result']> {
     const now = new Date();
     const user = {
-      id: uuid(),
       ...params,
+      id: uuid(),
+      is_doctor: params.is_doctor ?? false,
       created_at: now.toISOString(),
       updated_at: now.toISOString(),
     };
@@ -47,5 +48,19 @@ export class DynamoUserRepository implements IUserRepository {
     }
 
     return null;
+  }
+
+  async setAsInvalid(document: string): Promise<void> {
+    await this.dynamo
+      .update({
+        TableName: env.UsersTableName,
+        Key: { document },
+        UpdateExpression: 'set is_valid = :value',
+        ExpressionAttributeValues: {
+          ':value': false,
+        },
+        ReturnValues: 'ALL_NEW',
+      })
+      .promise();
   }
 }

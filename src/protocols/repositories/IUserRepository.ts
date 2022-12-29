@@ -6,6 +6,8 @@ export interface IUserRepository {
   ): Promise<IUserRepository.add['Result']>;
 
   findByEmail(email: string): Promise<IUserRepository.findByEmail['Result']>;
+
+  setAsInvalid(userId: string): Promise<void>;
 }
 
 export namespace IUserRepository {
@@ -16,6 +18,7 @@ export namespace IUserRepository {
       location: string;
       document: string;
       password: string;
+      is_doctor?: boolean;
     };
 
     Result: UserModel;

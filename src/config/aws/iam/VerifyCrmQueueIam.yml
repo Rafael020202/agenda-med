@@ -1,0 +1,6 @@
+VerifyCrmQueueIAM:
+  Effect: Allow
+  Action:
+    - sqs:ReceiveMessage
+    - sqs:SendMessage
+  Resource: ${self:custom.VerifyCrmQueue.arn}

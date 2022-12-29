@@ -4,6 +4,7 @@ import {
   BcryptProvider,
   EmailValidatorProvider,
   CpfCnpjValidatorProvider,
+  SimpleInfoProvider,
 } from '@/infra/providers';
 
 export const makeSignUpController = () => {
@@ -11,11 +12,13 @@ export const makeSignUpController = () => {
   const bcryptProvider = new BcryptProvider();
   const emailValidatorProvider = new EmailValidatorProvider();
   const cpfCnpjValidatorProvider = new CpfCnpjValidatorProvider();
+  const simpleInfoProvider = new SimpleInfoProvider();
 
   return new SignUpController(
     userRepository,
     bcryptProvider,
     emailValidatorProvider,
-    cpfCnpjValidatorProvider
+    cpfCnpjValidatorProvider,
+    simpleInfoProvider
   );
 };

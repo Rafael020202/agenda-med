@@ -1,3 +1,3 @@
 export interface IDocumentValidatorProvider {
-  isCpfValid(cpf: string): boolean;
+  isValid(document: string): boolean | Promise<boolean>;
 }
