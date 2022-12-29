@@ -4,6 +4,15 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs14.x
+  stage: ${opt:stage, 'dev'}
+  environment:
+    USERS_TABLE: ${self:custom.UsersTable.name}
+  iamRoleStatements:
+    - ${file(src/config/aws/iam/UsersTableIam.yml):UsersTableIAM}
+
+resources:
+  Resources:
+    UsersTable: ${file(src/config/aws/resources/UsersTableResource.yml):UsersTable}
 
 plugins:
   - serverless-esbuild
@@ -13,3 +22,17 @@ functions:
     handler: handler.handler
     events:
       - httpApi: '*'
+
+custom:
+  UsersTable:
+    name: !Ref UsersTable
+    arn: !GetAtt UsersTable.Arn
+  esbuild:
+    bundle: true
+    minify: false
+    sourcemap: true
+    exclude: ['aws-sdk']
+    target: 'node14'
+    define: { 'require.resolve': undefined }
+    platform: 'node'
+    concurrency: 10
