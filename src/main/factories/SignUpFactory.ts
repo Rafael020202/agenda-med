@@ -1,4 +1,4 @@
-import { CreateUserController } from '@/controllers';
+import { SignUpController } from '@/controllers';
 import { DynamoUserRepository } from '@/infra/db';
 import {
   BcryptProvider,
@@ -12,7 +12,7 @@ export const makeSignUp = () => {
   const emailValidatorProvider = new EmailValidatorProvider();
   const cpfCnpjValidatorProvider = new CpfCnpjValidatorProvider();
 
-  return new CreateUserController(
+  return new SignUpController(
     userRepository,
     bcryptProvider,
     emailValidatorProvider,

@@ -13,7 +13,7 @@ import {
   InvalidParamError,
 } from '@/errors';
 
-export class CreateUserController implements Controller {
+export class SignUpController implements Controller {
   constructor(
     private userRepository: IUserRepository,
     private hashProvider: IHashProvider,
