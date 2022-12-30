@@ -2,7 +2,7 @@ export class UnauthorizedError extends Error {
   private code: string;
 
   constructor() {
-    super('Unauthorized');
+    super('UnauthorizedError');
 
     this.code = 'Unauthorized';
     this.message = 'Unauthorized';

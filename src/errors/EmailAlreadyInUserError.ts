@@ -4,7 +4,7 @@ export class EmailAlreadyInUserError extends Error {
   constructor() {
     super('EmailAlreadyInUseError');
 
-    this.code = 'EmailAlreadyInUseError';
+    this.code = 'EmailAlreadyInUse';
     this.message = 'Email already in use';
   }
 }

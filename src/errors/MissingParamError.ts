@@ -4,7 +4,7 @@ export class MissingParamError extends Error {
   constructor(param: string) {
     super('MissingParamError');
 
-    this.code = 'MissingParamError';
+    this.code = 'MissingParam';
     this.message = `${param} is required`;
   }
 }
