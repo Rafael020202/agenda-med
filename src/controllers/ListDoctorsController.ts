@@ -1,22 +1,12 @@
-import { badRequest, ok, unauthorized } from '@/helpers';
-import {
-  Controller,
-  HttpResponse,
-  IEncrypterProvider,
-  IHashProvider,
-  IUserRepository,
-} from '@/protocols';
+import { ok, badRequest } from '@/helpers';
 import { MissingParamError } from '@/errors';
+import { Controller, HttpResponse, IUserRepository } from '@/protocols';
 
 export class ListDoctorsController implements Controller {
-  constructor(
-    private userRepository: IUserRepository,
-    private hashProvider: IHashProvider,
-    private encrypterProvider: IEncrypterProvider
-  ) {}
+  constructor(private userRepository: IUserRepository) {}
 
   async handle(request: ListDoctorsController.Request): Promise<HttpResponse> {
-    const required = ['email', 'password'];
+    const required = ['latitude', 'longitude'];
 
     for (const field of required) {
       if (!request[field]) {
@@ -24,32 +14,19 @@ export class ListDoctorsController implements Controller {
       }
     }
 
-    const { email, password } = request;
-    const user = await this.userRepository.findByEmail(email);
+    const result = await this.userRepository.listByLagitudeAndLogitude({
+      latitude: Number(request.latitude),
+      longitude: Number(request.longitude),
+    });
 
-    if (!user) {
-      return unauthorized();
-    }
-
-    const isPasswordCorrect = await this.hashProvider.compare(
-      password,
-      user.password
-    );
-
-    if (!isPasswordCorrect) {
-      return unauthorized();
-    }
-
-    const token = this.encrypterProvider.encrypt({ id: user.id });
-
-    delete user.password;
-
-    return ok({ token, user });
+    return ok({ data: result });
   }
 }
 
 export namespace ListDoctorsController {
   export type Request = {
+    latitude: number;
+    longitude: number;
     specialty: string;
   };
 }

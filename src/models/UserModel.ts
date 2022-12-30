@@ -5,6 +5,8 @@ export type UserModel = {
   password: string;
   document: string;
   location: string;
+  latitude: number;
+  longitude: number;
   is_doctor: boolean;
   specialty: string;
   created_at: string;

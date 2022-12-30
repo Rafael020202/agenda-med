@@ -23,7 +23,15 @@ export class SignUpController implements Controller {
   ) {}
 
   async handle(request: CreateUserController.Request): Promise<HttpResponse> {
-    const required = ['name', 'email', 'location', 'password', 'document'];
+    const required = [
+      'name',
+      'email',
+      'location',
+      'password',
+      'document',
+      'latitude',
+      'longitude',
+    ];
 
     if (request.is_doctor) {
       required.push('specialty');
@@ -54,7 +62,17 @@ export class SignUpController implements Controller {
       return badRequest(new EmailAlreadyInUserError());
     }
 
-    const { email, name, document, location, password, is_doctor } = request;
+    const {
+      email,
+      name,
+      document,
+      location,
+      password,
+      is_doctor,
+      latitude,
+      longitude,
+      specialty,
+    } = request;
     const hashedPassword = await this.hashProvider.hash(password, 8);
     const createdUser = await this.userRepository.add({
       email,
@@ -62,6 +80,9 @@ export class SignUpController implements Controller {
       document,
       is_doctor,
       location,
+      latitude,
+      longitude,
+      specialty,
       password: hashedPassword,
     });
 
@@ -78,7 +99,10 @@ export namespace CreateUserController {
     email: string;
     password: string;
     document: string;
+    latitude: number;
+    longitude: number;
     is_doctor: boolean;
+    specialty: string;
   };
 
   export type Response = boolean;

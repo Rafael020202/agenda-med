@@ -8,6 +8,10 @@ export interface IUserRepository {
   findByEmail(email: string): Promise<IUserRepository.findByEmail['Result']>;
 
   setAsInvalid(userId: string): Promise<void>;
+
+  listByLagitudeAndLogitude(
+    params: IUserRepository.listByLagitudeAndLogitude['Params']
+  ): Promise<IUserRepository.listByLagitudeAndLogitude['Result']>;
 }
 
 export namespace IUserRepository {
@@ -18,6 +22,8 @@ export namespace IUserRepository {
       location: string;
       document: string;
       password: string;
+      latitude: number;
+      longitude: number;
       is_doctor?: boolean;
       specialty?: string;
     };
@@ -27,5 +33,14 @@ export namespace IUserRepository {
 
   export type findByEmail = {
     Result: UserModel;
+  };
+
+  export type listByLagitudeAndLogitude = {
+    Params: {
+      latitude: number;
+      longitude: number;
+    };
+
+    Result: UserModel[];
   };
 }

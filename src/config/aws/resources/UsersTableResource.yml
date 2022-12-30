@@ -8,6 +8,10 @@ UsersTable:
         AttributeType: S
       - AttributeName: email
         AttributeType: S
+      - AttributeName: latitude
+        AttributeType: N
+      - AttributeName: longitude
+        AttributeType: N
     KeySchema:
       - AttributeName: id
         KeyType: HASH
@@ -16,5 +20,13 @@ UsersTable:
         KeySchema:
           - AttributeName: email
             KeyType: HASH
+        Projection:
+          ProjectionType: ALL
+      - IndexName: latitudeLongitudeIndex
+        KeySchema:
+          - AttributeName: latitude
+            KeyType: HASH
+          - AttributeName: longitude
+            KeyType: RANGE
         Projection:
           ProjectionType: ALL

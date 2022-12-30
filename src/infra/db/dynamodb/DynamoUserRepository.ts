@@ -51,6 +51,32 @@ export class DynamoUserRepository implements IUserRepository {
     return null;
   }
 
+  async listByLagitudeAndLogitude(
+    params: IUserRepository.listByLagitudeAndLogitude['Params']
+  ): Promise<IUserRepository.listByLagitudeAndLogitude['Result']> {
+    const result = await this.dynamo
+      .query({
+        TableName: env.UsersTableName,
+        IndexName: 'latitudeLongitudeIndex',
+        KeyConditionExpression:
+          'latitude = :latitude AND longitude = :longitude',
+        FilterExpression: 'is_doctor = :is_doctor',
+        ProjectionExpression:
+          'id, #name, document, email, created_at, updated_at',
+        ExpressionAttributeNames: {
+          '#name': 'name',
+        },
+        ExpressionAttributeValues: {
+          ':longitude': params.longitude,
+          ':latitude': params.latitude,
+          ':is_doctor': true,
+        },
+      })
+      .promise();
+
+    return <any>result.Items;
+  }
+
   async setAsInvalid(document: string): Promise<void> {
     await this.dynamo
       .update({
