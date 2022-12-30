@@ -19,6 +19,7 @@ export namespace IUserRepository {
       document: string;
       password: string;
       is_doctor?: boolean;
+      specialty?: string;
     };
 
     Result: UserModel;

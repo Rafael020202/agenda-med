@@ -25,6 +25,10 @@ export class SignUpController implements Controller {
   async handle(request: CreateUserController.Request): Promise<HttpResponse> {
     const required = ['name', 'email', 'location', 'password', 'document'];
 
+    if (request.is_doctor) {
+      required.push('specialty');
+    }
+
     for (const field of required) {
       if (!request[field]) {
         return badRequest(new MissingParamError(field));
@@ -50,12 +54,13 @@ export class SignUpController implements Controller {
       return badRequest(new EmailAlreadyInUserError());
     }
 
-    const { email, name, document, location, password } = request;
+    const { email, name, document, location, password, is_doctor } = request;
     const hashedPassword = await this.hashProvider.hash(password, 8);
     const createdUser = await this.userRepository.add({
       email,
       name,
       document,
+      is_doctor,
       location,
       password: hashedPassword,
     });
