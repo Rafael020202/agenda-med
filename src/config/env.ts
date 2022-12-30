@@ -1,9 +1,6 @@
-export type ENV = {
-  USERS_TABLE: string;
-};
-
 const env = {
   UsersTableName: process.env.USERS_TABLE,
+  JwtSecret: process.env.JWT_SECRET,
 };
 
 export default env;
