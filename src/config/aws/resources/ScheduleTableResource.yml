@@ -11,8 +11,6 @@ ScheduleTable:
     KeySchema:
       - AttributeName: id
         KeyType: HASH
-      - AttributeName: date
-        KeyType: RANGE
     GlobalSecondaryIndexes:
       - IndexName: dateIndex
         KeySchema:

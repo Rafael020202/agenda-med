@@ -28,6 +28,13 @@ export const alreadyExists = (error: Error) => {
   };
 };
 
+export const noContent = () => {
+  return {
+    status: 204,
+    body: null,
+  };
+};
+
 export const forbidden = (error: Error) => {
   return {
     status: 403,
