@@ -66,8 +66,6 @@ export class DynamoUserRepository implements IUserRepository {
       filterExpression = filterExpression.concat(' AND specialty = :specialty');
     }
 
-    console.log({ filterExpression, expressionAttributeValues });
-
     const result = await this.dynamo
       .query({
         TableName: env.UsersTableName,
