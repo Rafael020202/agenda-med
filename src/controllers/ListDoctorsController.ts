@@ -17,6 +17,7 @@ export class ListDoctorsController implements Controller {
     const result = await this.userRepository.listByLagitudeAndLogitude({
       latitude: Number(request.latitude),
       longitude: Number(request.longitude),
+      specialty: request.specialty,
     });
 
     return ok({ data: result });
@@ -27,6 +28,6 @@ export namespace ListDoctorsController {
   export type Request = {
     latitude: number;
     longitude: number;
-    specialty: string;
+    specialty?: string;
   };
 }

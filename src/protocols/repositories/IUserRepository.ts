@@ -39,6 +39,7 @@ export namespace IUserRepository {
     Params: {
       latitude: number;
       longitude: number;
+      specialty?: string;
     };
 
     Result: UserModel[];

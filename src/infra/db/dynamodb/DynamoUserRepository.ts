@@ -54,23 +54,33 @@ export class DynamoUserRepository implements IUserRepository {
   async listByLagitudeAndLogitude(
     params: IUserRepository.listByLagitudeAndLogitude['Params']
   ): Promise<IUserRepository.listByLagitudeAndLogitude['Result']> {
+    let filterExpression = 'is_doctor = :is_doctor';
+    const expressionAttributeValues = {
+      ':longitude': params.longitude,
+      ':latitude': params.latitude,
+      ':is_doctor': true,
+    };
+
+    if (params.specialty) {
+      expressionAttributeValues[':specialty'] = params.specialty;
+      filterExpression = filterExpression.concat(' AND specialty = :specialty');
+    }
+
+    console.log({ filterExpression, expressionAttributeValues });
+
     const result = await this.dynamo
       .query({
         TableName: env.UsersTableName,
         IndexName: 'latitudeLongitudeIndex',
         KeyConditionExpression:
           'latitude = :latitude AND longitude = :longitude',
-        FilterExpression: 'is_doctor = :is_doctor',
+        FilterExpression: filterExpression,
         ProjectionExpression:
-          'id, #name, document, email, created_at, updated_at',
+          'id, #name, document, email, specialty, created_at, updated_at',
         ExpressionAttributeNames: {
           '#name': 'name',
         },
-        ExpressionAttributeValues: {
-          ':longitude': params.longitude,
-          ':latitude': params.latitude,
-          ':is_doctor': true,
-        },
+        ExpressionAttributeValues: expressionAttributeValues,
       })
       .promise();
 
