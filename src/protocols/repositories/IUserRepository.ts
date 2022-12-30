@@ -7,6 +7,8 @@ export interface IUserRepository {
 
   findByEmail(email: string): Promise<IUserRepository.findByEmail['Result']>;
 
+  findById(id: string): Promise<IUserRepository.findById['Result']>;
+
   setAsInvalid(userId: string): Promise<void>;
 
   listByLagitudeAndLogitude(
@@ -32,6 +34,10 @@ export namespace IUserRepository {
   };
 
   export type findByEmail = {
+    Result: UserModel;
+  };
+
+  export type findById = {
     Result: UserModel;
   };
 

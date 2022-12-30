@@ -1,10 +1,10 @@
 export class AccessDeniedError extends Error {
   private code: string;
 
-  constructor() {
+  constructor(message?: string) {
     super('AccessDeniedError');
 
     this.code = 'AccessDenied';
-    this.message = 'Access denied';
+    this.message = message ?? 'Access denied';
   }
 }

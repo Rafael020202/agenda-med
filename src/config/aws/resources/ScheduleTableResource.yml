@@ -1,0 +1,22 @@
+ScheduleTable:
+  Type: AWS::DynamoDB::Table
+  Properties:
+    TableName: ScheduleTable-${self:provider.stage}
+    BillingMode: PAY_PER_REQUEST
+    AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+      - AttributeName: date
+        AttributeType: S
+    KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+      - AttributeName: date
+        KeyType: RANGE
+    GlobalSecondaryIndexes:
+      - IndexName: dateIndex
+        KeySchema:
+          - AttributeName: date
+            KeyType: HASH
+        Projection:
+          ProjectionType: ALL

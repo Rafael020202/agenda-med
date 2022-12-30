@@ -21,9 +21,16 @@ export const unauthorized = () => {
   };
 };
 
+export const alreadyExists = (error: Error) => {
+  return {
+    status: 409,
+    body: error,
+  };
+};
+
 export const forbidden = (error: Error) => {
   return {
-    statusCode: 403,
+    status: 403,
     body: error,
   };
 };

@@ -1,0 +1,11 @@
+ScheduleTableIAM:
+  Effect: Allow
+  Action:
+    - dynamodb:PutItem
+    - dynamodb:Scan
+    - dynamodb:GetItem
+    - dynamodb:UpdateItem
+    - dynamodb:Query
+  Resource:
+    - ${self:custom.ScheduleTable.arn}
+    - !Join ['/', ['${self:custom.ScheduleTable.arn}', 'index', 'dateIndex']]

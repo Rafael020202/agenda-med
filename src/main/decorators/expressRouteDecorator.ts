@@ -8,6 +8,7 @@ export const expressRouteDecorator = (controller: Controller) => {
       ...(req.body || {}),
       ...(req.params || {}),
       ...(req.query || {}),
+      userId: req.userId,
     };
 
     const result = await controller.handle(request);

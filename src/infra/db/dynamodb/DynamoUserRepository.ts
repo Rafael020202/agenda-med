@@ -30,6 +30,17 @@ export class DynamoUserRepository implements IUserRepository {
     return user;
   }
 
+  async findById(id: string): Promise<IUserRepository.findById['Result']> {
+    const result = await this.dynamo
+      .get({
+        TableName: env.UsersTableName,
+        Key: { id },
+      })
+      .promise();
+
+    return <any>result.Item;
+  }
+
   async findByEmail(
     email: string
   ): Promise<IUserRepository.findByEmail['Result']> {
