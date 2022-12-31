@@ -16,7 +16,7 @@ export class CreateAppointmentController implements Controller {
   async handle(
     request: CreateAppointmentController.Request
   ): Promise<HttpResponse> {
-    const required = ['patient_id', 'doctor_id', 'value', 'date'];
+    const required = ['doctor_id', 'value', 'date'];
 
     for (const field of required) {
       if (!request[field]) {
@@ -24,7 +24,7 @@ export class CreateAppointmentController implements Controller {
       }
     }
 
-    const { date, doctor_id, patient_id, value } = request;
+    const { date, doctor_id, value } = request;
     const appointmentExists =
       await this.appointmentRepository.findByDateAndDoctorId(date, doctor_id);
 
@@ -32,7 +32,7 @@ export class CreateAppointmentController implements Controller {
       return alreadyExists(new AlreadyExistsError('appointment'));
     }
 
-    const patient = await this.userRepository.findById(patient_id);
+    const patient = await this.userRepository.findById(request.userId);
 
     if (!patient) {
       return notFound(new NotFoundError('patient'));
@@ -47,7 +47,7 @@ export class CreateAppointmentController implements Controller {
     const appointment = await this.appointmentRepository.add({
       date,
       doctor_id,
-      patient_id,
+      patient_id: request.userId,
       value,
     });
 
@@ -57,7 +57,7 @@ export class CreateAppointmentController implements Controller {
 
 export namespace CreateAppointmentController {
   export type Request = {
-    patient_id: string;
+    userId: string;
     doctor_id: string;
     value: number;
     date: string;
