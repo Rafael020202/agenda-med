@@ -3,7 +3,7 @@ import { Router } from 'express';
 import {
   makeSignUpController,
   makeLoginController,
-  makeListDoctorsController,
+  makeListDoctorsByLocationController,
   makeAddToScheduleController,
   makeCreateAppointmentController,
   makeListScheduleController,
@@ -23,7 +23,7 @@ router.post('/signin', expressRouteDecorator(makeLoginController()));
 router.get(
   '/doctors',
   expressMiddlewareDecorator(makeAuthMiddleware()),
-  expressRouteDecorator(makeListDoctorsController())
+  expressRouteDecorator(makeListDoctorsByLocationController())
 );
 
 router.post(
