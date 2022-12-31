@@ -28,9 +28,7 @@ export class CreateAppointmentController implements Controller {
     const appointmentExists = await this.appointmentRepository.findByDate(date);
 
     if (appointmentExists) {
-      return alreadyExists(
-        new AlreadyExistsError('appointment already booked')
-      );
+      return alreadyExists(new AlreadyExistsError('appointment'));
     }
 
     const patient = await this.userRepository.findById(patient_id);

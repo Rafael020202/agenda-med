@@ -24,7 +24,7 @@ export class AddToScheduleController implements Controller {
     const user = await this.userRepository.findById(request.userId);
 
     if (!user.is_doctor) {
-      return forbidden(new AccessDeniedError('user is not a doctor'));
+      return forbidden(new AccessDeniedError());
     }
 
     const isRecurrent = request.from || request.to;
@@ -58,7 +58,7 @@ export class AddToScheduleController implements Controller {
     );
 
     if (scheduleExists) {
-      return alreadyExists(new AlreadyExistsError('date already on schedule'));
+      return alreadyExists(new AlreadyExistsError('date'));
     }
 
     createdSchedule = await this.scheduleRepository.add({

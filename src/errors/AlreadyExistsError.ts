@@ -1,10 +1,10 @@
 export class AlreadyExistsError extends Error {
   private code: string;
 
-  constructor(message: string) {
+  constructor(resource: string) {
     super('AlreadyExistsError');
 
     this.code = 'AlreadyExists';
-    this.message = message;
+    this.message = `${resource} already exists`;
   }
 }

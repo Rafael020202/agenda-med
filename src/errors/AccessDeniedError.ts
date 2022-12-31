@@ -1,10 +1,10 @@
 export class AccessDeniedError extends Error {
   private code: string;
 
-  constructor(message?: string) {
+  constructor() {
     super('AccessDeniedError');
 
     this.code = 'AccessDenied';
-    this.message = message ?? 'Access denied';
+    this.message = 'Cannot use resource';
   }
 }
