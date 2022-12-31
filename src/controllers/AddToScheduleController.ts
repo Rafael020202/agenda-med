@@ -12,14 +12,14 @@ import {
   IScheduleRepository,
 } from '@/protocols';
 
-export class AddDateToScheduleController implements Controller {
+export class AddToScheduleController implements Controller {
   constructor(
     private userRepository: IUserRepository,
     private scheduleRepository: IScheduleRepository
   ) {}
 
   async handle(
-    request: AddDateToScheduleController.Request
+    request: AddToScheduleController.Request
   ): Promise<HttpResponse> {
     const user = await this.userRepository.findById(request.userId);
 
@@ -71,7 +71,7 @@ export class AddDateToScheduleController implements Controller {
   }
 }
 
-export namespace AddDateToScheduleController {
+export namespace AddToScheduleController {
   export type Request = {
     userId: string;
     date: string;

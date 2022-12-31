@@ -4,7 +4,7 @@ import {
   makeSignUpController,
   makeLoginController,
   makeListDoctorsController,
-  makeAddDateToScheduleController,
+  makeAddToScheduleController,
   makeCreateAppointmentController,
   makeListScheduleController,
   makeAuthMiddleware,
@@ -28,7 +28,7 @@ router.get(
 router.post(
   '/schedule',
   expressMiddlewareDecorator(makeAuthMiddleware()),
-  expressRouteDecorator(makeAddDateToScheduleController())
+  expressRouteDecorator(makeAddToScheduleController())
 );
 router.get(
   '/schedule',
