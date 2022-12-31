@@ -12,8 +12,6 @@ export interface IScheduleRepository {
   findByDoctorId(
     doctorId: string
   ): Promise<IScheduleRepository.findByDoctorId['Result']>;
-
-  assignPatient(scheduleId: string, patientId: string): Promise<void>;
 }
 
 export namespace IScheduleRepository {

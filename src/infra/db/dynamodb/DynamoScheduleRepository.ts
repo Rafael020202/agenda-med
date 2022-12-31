@@ -32,20 +32,6 @@ export class DynamoScheduleRepository implements IScheduleRepository {
     return schedule;
   }
 
-  async assignPatient(scheduleId: string, patientId: string): Promise<void> {
-    await this.dynamo
-      .update({
-        TableName: env.ScheduleTableName,
-        Key: { id: scheduleId },
-        UpdateExpression: 'set patient_id = :patient_id',
-        ExpressionAttributeValues: {
-          ':patient_id': patientId,
-        },
-        ReturnValues: 'ALL_NEW',
-      })
-      .promise();
-  }
-
   async findById(id: string): Promise<IScheduleRepository.findById['Result']> {
     const result = await this.dynamo
       .get({
