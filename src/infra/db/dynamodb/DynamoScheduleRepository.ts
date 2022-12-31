@@ -16,7 +16,7 @@ export class DynamoScheduleRepository implements IScheduleRepository {
       id: uuid(),
       from: params.from ?? null,
       to: params.to ?? null,
-      date: params.date ?? new Date(params.date).toISOString(),
+      date: params.date ?? new Date(null).toISOString(),
       hours: params.hours,
       created_at: now.toISOString(),
       updated_at: now.toISOString(),
