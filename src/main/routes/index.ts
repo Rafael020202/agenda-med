@@ -30,15 +30,16 @@ router.post(
   expressMiddlewareDecorator(makeAuthMiddleware()),
   expressRouteDecorator(makeAddDateToScheduleController())
 );
-router.patch(
-  '/schedule/:sheduleId',
-  expressMiddlewareDecorator(makeAuthMiddleware()),
-  expressRouteDecorator(makeCreateAppointmentController())
-);
 router.get(
   '/schedule',
   expressMiddlewareDecorator(makeAuthMiddleware()),
   expressRouteDecorator(makeListScheduleController())
+);
+
+router.post(
+  '/appointment',
+  expressMiddlewareDecorator(makeAuthMiddleware()),
+  expressRouteDecorator(makeCreateAppointmentController())
 );
 
 export default router;

@@ -28,6 +28,13 @@ export const alreadyExists = (error: Error) => {
   };
 };
 
+export const notFound = (error: Error) => {
+  return {
+    status: 404,
+    body: error,
+  };
+};
+
 export const noContent = () => {
   return {
     status: 204,

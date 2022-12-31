@@ -1,8 +1,9 @@
 import { CreateAppointmentController } from '@/controllers';
-import { DynamoScheduleRepository } from '@/infra/db';
+import { DynamoAppointmentRepository, DynamoUserRepository } from '@/infra/db';
 
 export const makeCreateAppointmentController = () => {
-  const scheduleRepository = new DynamoScheduleRepository();
+  const appointmentRepository = new DynamoAppointmentRepository();
+  const userRepository = new DynamoUserRepository();
 
-  return new CreateAppointmentController(scheduleRepository);
+  return new CreateAppointmentController(appointmentRepository, userRepository);
 };

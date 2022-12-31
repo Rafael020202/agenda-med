@@ -8,6 +8,7 @@ provider:
   environment:
     USERS_TABLE: ${self:custom.UsersTable.name}
     SCHEDULE_TABLE: ${self:custom.ScheduleTable.name}
+    APPOINTMENT_TABLE: ${self:custom.AppointmentTable.name}
     INFO_SIMPLES_BASE_URL: https://api.infosimples.com/api/v2
     INFO_SIMPLES_TOKEN: QPBspihj4172CQVC3edlJH3C09LhzxxhPaTcXpZo
     VERIFY_CRM_QUEUE_URL: ${self:custom.VerifyCrmQueue.url}
@@ -15,12 +16,14 @@ provider:
   iamRoleStatements:
     - ${file(src/config/aws/iam/UsersTableIam.yml):UsersTableIAM}
     - ${file(src/config/aws/iam/ScheduleTableIam.yml):ScheduleTableIAM}
+    - ${file(src/config/aws/iam/AppointmentTableIam.yml):AppointmentTableIAM}
     - ${file(src/config/aws/iam/VerifyCrmQueueIam.yml):VerifyCrmQueueIAM}
 
 resources:
   Resources:
     UsersTable: ${file(src/config/aws/resources/UsersTableResource.yml):UsersTable}
     ScheduleTable: ${file(src/config/aws/resources/ScheduleTableResource.yml):ScheduleTable}
+    AppointmentTable: ${file(src/config/aws/resources/AppointmentTableResource.yml):AppointmentTable}
     VerifyCrmQueue: ${file(src/config/aws/resources/VerifyCrmQueueResource.yml):VerifyCrmQueue}
 
 plugins:
@@ -40,6 +43,9 @@ custom:
   ScheduleTable:
     name: !Ref ScheduleTable
     arn: !GetAtt ScheduleTable.Arn
+  AppointmentTable:
+    name: !Ref AppointmentTable
+    arn: !GetAtt AppointmentTable.Arn
   VerifyCrmQueue:
     name: VerifyCrmQueue-${self:provider.stage}
     arn: !GetAtt VerifyCrmQueue.Arn
