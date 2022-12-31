@@ -21,7 +21,6 @@ export namespace IUserRepository {
     Params: {
       name: string;
       email: string;
-      location: string;
       document: string;
       password: string;
       latitude: number;

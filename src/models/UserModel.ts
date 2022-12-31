@@ -4,7 +4,6 @@ export type UserModel = {
   email: string;
   password: string;
   document: string;
-  location: string;
   latitude: number;
   longitude: number;
   is_doctor: boolean;

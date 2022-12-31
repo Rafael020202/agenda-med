@@ -26,7 +26,6 @@ export class SignUpController implements Controller {
     const required = [
       'name',
       'email',
-      'location',
       'password',
       'document',
       'latitude',
@@ -67,7 +66,6 @@ export class SignUpController implements Controller {
       email,
       name,
       document,
-      location,
       password,
       is_doctor,
       latitude,
@@ -81,7 +79,6 @@ export class SignUpController implements Controller {
       name,
       document,
       is_doctor,
-      location,
       latitude,
       longitude,
       specialty,
