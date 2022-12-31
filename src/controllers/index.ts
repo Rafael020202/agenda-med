@@ -4,3 +4,4 @@ export * from './ListDoctorsController';
 export * from './AddToScheduleController';
 export * from './CreateAppointmentController';
 export * from './ListScheduleController';
+export * from './ListAppointmentController';

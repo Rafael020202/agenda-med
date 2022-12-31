@@ -4,3 +4,4 @@ export * from './ListDoctorsControllerFactory';
 export * from './AddToScheduleControllerFactory';
 export * from './CreateAppointmentControllerFactory';
 export * from './ListScheduleControllerFactory';
+export * from './ListAppointmentControllerFactory';

@@ -5,6 +5,14 @@ export interface IAppointmentRepository {
     params: IAppointmentRepository.add['Params']
   ): Promise<IAppointmentRepository.add['Result']>;
 
+  listByDoctorId(
+    doctorId: string
+  ): Promise<IAppointmentRepository.listByDoctorId['Result']>;
+
+  listByPatientId(
+    patientId: string
+  ): Promise<IAppointmentRepository.listByPatientId['Result']>;
+
   findByDate(
     date: string
   ): Promise<IAppointmentRepository.findByDate['Result']>;
@@ -24,5 +32,13 @@ export namespace IAppointmentRepository {
 
   export type findByDate = {
     Result: AppointmentModel;
+  };
+
+  export type listByDoctorId = {
+    Result: AppointmentModel[];
+  };
+
+  export type listByPatientId = {
+    Result: AppointmentModel[];
   };
 }
