@@ -14,7 +14,10 @@ export class DynamoScheduleRepository implements IScheduleRepository {
     const schedule = {
       ...params,
       id: uuid(),
-      patient_id: null,
+      from: params.from ?? null,
+      to: params.to ?? null,
+      date: params.date ?? new Date(params.date).toISOString(),
+      hours: params.hours,
       created_at: now.toISOString(),
       updated_at: now.toISOString(),
     };

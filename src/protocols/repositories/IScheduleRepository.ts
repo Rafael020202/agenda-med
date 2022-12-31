@@ -16,7 +16,10 @@ export namespace IScheduleRepository {
   export type add = {
     Params: {
       doctor_id: string;
-      date: string;
+      hours: string[];
+      from?: number;
+      to?: number;
+      date?: string;
     };
 
     Result: ScheduleModel;
