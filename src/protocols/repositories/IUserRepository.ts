@@ -27,6 +27,7 @@ export namespace IUserRepository {
       latitude: number;
       longitude: number;
       is_doctor?: boolean;
+      appointment_value?: number;
       specialty?: string;
     };
 

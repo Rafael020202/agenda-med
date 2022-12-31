@@ -8,6 +8,7 @@ export type UserModel = {
   latitude: number;
   longitude: number;
   is_doctor: boolean;
+  appointment_value: number;
   specialty: string;
   created_at: string;
   updated_at: string;

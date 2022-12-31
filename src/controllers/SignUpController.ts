@@ -35,6 +35,7 @@ export class SignUpController implements Controller {
 
     if (request.is_doctor) {
       required.push('specialty');
+      required.push('appointment_value');
     }
 
     for (const field of required) {
@@ -72,6 +73,7 @@ export class SignUpController implements Controller {
       latitude,
       longitude,
       specialty,
+      appointment_value,
     } = request;
     const hashedPassword = await this.hashProvider.hash(password, 8);
     const createdUser = await this.userRepository.add({
@@ -83,6 +85,7 @@ export class SignUpController implements Controller {
       latitude,
       longitude,
       specialty,
+      appointment_value,
       password: hashedPassword,
     });
 
@@ -103,6 +106,7 @@ export namespace CreateUserController {
     longitude: number;
     is_doctor: boolean;
     specialty: string;
+    appointment_value: number;
   };
 
   export type Response = boolean;

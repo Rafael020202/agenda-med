@@ -16,6 +16,7 @@ export class DynamoUserRepository implements IUserRepository {
       id: uuid(),
       is_doctor: params.is_doctor ?? false,
       specialty: params.specialty ?? '',
+      appointment_value: params.appointment_value ?? 0,
       created_at: now.toISOString(),
       updated_at: now.toISOString(),
     };
