@@ -13,8 +13,9 @@ export interface IAppointmentRepository {
     patientId: string
   ): Promise<IAppointmentRepository.listByPatientId['Result']>;
 
-  findByDate(
-    date: string
+  findByDateAndDoctorId(
+    date: string,
+    doctorId: string
   ): Promise<IAppointmentRepository.findByDate['Result']>;
 }
 

@@ -28,19 +28,22 @@ export class DynamoAppointmentRepository implements IAppointmentRepository {
     return appointment;
   }
 
-  async findByDate(
-    date: string
+  async findByDateAndDoctorId(
+    date: string,
+    doctorId: string
   ): Promise<IAppointmentRepository.findByDate['Result']> {
     const result = await this.dynamo
       .query({
         TableName: env.AppointmentTableName,
         IndexName: 'dateIndex',
         KeyConditionExpression: '#date = :date',
+        FilterExpression: 'doctor_id = :doctor_id',
         ExpressionAttributeNames: {
           '#date': 'date',
         },
         ExpressionAttributeValues: {
           ':date': date,
+          ':doctor_id': doctorId,
         },
       })
       .promise();
