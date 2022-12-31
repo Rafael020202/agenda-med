@@ -47,12 +47,15 @@ export class SignUpController implements Controller {
       return badRequest(new InvalidParamError('email'));
     }
 
-    if (
-      !(
-        request.is_doctor && (await this.crmValidator.isValid(request.document))
-      ) &&
-      !this.cpfValidator.isValid(request.document)
-    ) {
+    let documentIsValid;
+
+    if (request.is_doctor) {
+      documentIsValid = await this.crmValidator.isValid(request.document);
+    } else {
+      documentIsValid = this.cpfValidator.isValid(request.document);
+    }
+
+    if (!documentIsValid) {
       return badRequest(new InvalidParamError('document'));
     }
 
