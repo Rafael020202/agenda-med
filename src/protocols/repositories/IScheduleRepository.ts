@@ -9,6 +9,10 @@ export interface IScheduleRepository {
 
   findById(id: string): Promise<IScheduleRepository.findById['Result']>;
 
+  findByDoctorId(
+    doctorId: string
+  ): Promise<IScheduleRepository.findByDoctorId['Result']>;
+
   assignPatient(scheduleId: string, patientId: string): Promise<void>;
 }
 
@@ -30,6 +34,10 @@ export namespace IScheduleRepository {
   };
 
   export type findById = {
+    Result: ScheduleModel;
+  };
+
+  export type findByDoctorId = {
     Result: ScheduleModel;
   };
 }

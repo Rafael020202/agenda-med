@@ -9,3 +9,7 @@ ScheduleTableIAM:
   Resource:
     - ${self:custom.ScheduleTable.arn}
     - !Join ['/', ['${self:custom.ScheduleTable.arn}', 'index', 'dateIndex']]
+    - !Join [
+        '/',
+        ['${self:custom.ScheduleTable.arn}', 'index', 'doctorIdIndex'],
+      ]

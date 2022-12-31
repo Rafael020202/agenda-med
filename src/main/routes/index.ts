@@ -6,6 +6,7 @@ import {
   makeListDoctorsController,
   makeAddDateToScheduleController,
   makeCreateAppointmentController,
+  makeListScheduleController,
   makeAuthMiddleware,
 } from '@/main/factories';
 import {
@@ -33,6 +34,11 @@ router.patch(
   '/schedule/:sheduleId',
   expressMiddlewareDecorator(makeAuthMiddleware()),
   expressRouteDecorator(makeCreateAppointmentController())
+);
+router.get(
+  '/schedule',
+  expressMiddlewareDecorator(makeAuthMiddleware()),
+  expressRouteDecorator(makeListScheduleController())
 );
 
 export default router;
