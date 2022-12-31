@@ -28,7 +28,7 @@ router.get(
 );
 
 router.get(
-  '/user',
+  '/user/:user_id',
   expressMiddlewareDecorator(makeAuthMiddleware()),
   expressRouteDecorator(makeListUserInfoController())
 );

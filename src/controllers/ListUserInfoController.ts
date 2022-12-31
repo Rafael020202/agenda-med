@@ -1,11 +1,18 @@
-import { ok } from '@/helpers';
+import { NotFoundError } from '@/errors';
+import { notFound, ok } from '@/helpers';
 import { Controller, HttpResponse, IUserRepository } from '@/protocols';
 
 export class ListUserInfoController implements Controller {
   constructor(private userRepository: IUserRepository) {}
 
   async handle(request: ListUserInfoController.Request): Promise<HttpResponse> {
-    const user = await this.userRepository.findById(request.userId);
+    const user = await this.userRepository.findById(request.user_id);
+
+    if (!user) {
+      return notFound(new NotFoundError('user'));
+    }
+
+    delete user.password;
 
     return ok(user);
   }
@@ -13,6 +20,6 @@ export class ListUserInfoController implements Controller {
 
 export namespace ListUserInfoController {
   export type Request = {
-    userId: string;
+    user_id: string;
   };
 }
