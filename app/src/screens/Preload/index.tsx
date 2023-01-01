@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Container, LoadIcon } from './styles';
 
-const Preload: React.FC = () => {
+export const Preload: React.FC = () => {
   return (
     <Container>
       <Image
@@ -14,5 +14,3 @@ const Preload: React.FC = () => {
     </Container>
   );
 };
-
-export default Preload;

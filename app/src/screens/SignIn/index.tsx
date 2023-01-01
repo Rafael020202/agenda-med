@@ -10,12 +10,12 @@ import {
   SignMessageButtonText,
   SignMessageButtonBold,
 } from './styles';
-import SignInput from '@/components/SignInput';
+import { SignInput } from '@/components';
 
 import Email from '@/assets/email.svg';
 import Lock from '@/assets/lock.svg';
 
-const SignIn: React.FC = () => {
+export const SignIn: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -55,5 +55,3 @@ const SignIn: React.FC = () => {
     </Container>
   );
 };
-
-export default SignIn;

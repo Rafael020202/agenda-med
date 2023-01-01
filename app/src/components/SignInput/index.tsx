@@ -2,7 +2,7 @@ import React from 'react';
 
 import { InputArea, Input } from './styles';
 
-const SignInput = ({
+export const SignInput = ({
   IconSvg,
   placeholder,
   value,
@@ -23,5 +23,3 @@ const SignInput = ({
     </InputArea>
   );
 };
-
-export default SignInput;

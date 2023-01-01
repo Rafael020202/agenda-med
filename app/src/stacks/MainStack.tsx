@@ -1,15 +1,14 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Preload from '@/screens/Preload';
-import SignIn from '@/screens/SignIn';
+import { Preload, SignIn } from '@/screens';
 
 const stack = createStackNavigator();
 
 const MainStack: React.FC = () => {
   return (
     <stack.Navigator
-      initialRouteName="SignIn"
+      initialRouteName="Preload"
       screenOptions={{
         headerShown: false,
       }}
