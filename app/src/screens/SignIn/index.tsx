@@ -10,11 +10,10 @@ import {
   SignMessageButtonText,
   SignMessageButtonBold,
 } from './styles';
-import SignInput from '../../components/SignInput';
+import SignInput from '@/components/SignInput';
 
-//import BarberLogo from '../../assets/barber.svg';
-import Email from '../../assets/email.svg';
-import Lock from '../../assets/lock.svg';
+import Email from '@/assets/email.svg';
+import Lock from '@/assets/lock.svg';
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -23,7 +22,7 @@ const SignIn: React.FC = () => {
   return (
     <Container>
       <Image
-        source={require('../../assets/doctor.png')}
+        source={require('@/assets/doctor.png')}
         style={{ width: 160, height: 160 }}
       />
       <InputArea>
