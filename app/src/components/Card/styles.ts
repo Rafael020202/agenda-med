@@ -25,6 +25,9 @@ export const UserName = styled.Text`
   font-size: 17px;
   font-weight: bold;
 `;
+export const UserSpecialty = styled.Text`
+  font-size: 12px;
+`;
 
 export const SeeProfileButton = styled.View`
   width: 85px;
