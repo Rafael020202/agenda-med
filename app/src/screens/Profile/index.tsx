@@ -14,7 +14,6 @@ import {
 import { SignInput } from '@/components';
 import Email from '@/assets/email.svg';
 import Person from '@/assets/person.svg';
-import Location from '@/assets/my_location.svg';
 import ArrowLeft from '@/assets/arrow_left.svg';
 
 export const Profile: React.FC = () => {
@@ -40,14 +39,6 @@ export const Profile: React.FC = () => {
             placeholder="E-mail"
             value={''}
             onChangeText={() => true}
-          />
-
-          <SignInput
-            IconSvg={Location}
-            placeholder="Localização"
-            value={''}
-            onChangeText={() => true}
-            password={true}
           />
 
           <CustomButton>
