@@ -1,4 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native';
+import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 
 import MainStack from './src/stacks/MainStack';
@@ -10,7 +11,11 @@ const customFonts = {
 };
 
 export default function App() {
-  useFonts(customFonts);
+  const [isLoaded] = useFonts(customFonts);
+
+  if (!isLoaded) {
+    return <AppLoading />;
+  }
 
   return (
     <NavigationContainer>
