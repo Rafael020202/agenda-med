@@ -6,6 +6,7 @@ import MainStack from './src/stacks/MainStack';
 const customFonts = {
   'Poppins-Regular': require('./src/assets/fonts/Poppins-Regular.ttf'),
   'Poppins-Bold': require('./src/assets/fonts/Poppins-Bold.ttf'),
+  'Poppins-Light': require('./src/assets/fonts/Poppins-Light.ttf'),
 };
 
 export default function App() {

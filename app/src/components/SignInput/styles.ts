@@ -21,4 +21,6 @@ export const Input = styled.TextInput`
   color: #626262;
 
   margin-left: 10px;
+
+  font-family: 'Poppins-Regular';
 `;

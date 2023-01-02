@@ -8,7 +8,7 @@ export const StarView = styled.View``;
 
 export const StarText = styled.Text`
   font-size: 12px;
-  font-weight: bold;
+  font-family: 'Poppins-Bold';
 
   margin-left: 5px;
 

@@ -29,6 +29,7 @@ export const LocationArea = styled.View`
 export const LocationInput = styled.TextInput`
   flex: 1;
   font-size: 16px;
+  font-family: 'Poppins-Regular';
   color: #626262;
 `;
 

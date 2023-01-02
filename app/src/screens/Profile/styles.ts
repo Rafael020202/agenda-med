@@ -25,6 +25,7 @@ export const CustomButton = styled.TouchableOpacity`
 `;
 
 export const CustomButtonText = styled.Text`
+  font-family: 'Poppins-Regular';
   font-size: 16px;
   color: #fff;
 `;
@@ -43,5 +44,5 @@ export const SignOutButtonText = styled.Text`
   font-size: 16px;
   margin-left: 10px;
   color: #36558c;
-  font-weight: lighter;
+  font-family: 'Poppins-Light';
 `;

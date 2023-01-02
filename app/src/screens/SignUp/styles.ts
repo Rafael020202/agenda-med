@@ -21,6 +21,7 @@ export const CustomButton = styled.TouchableOpacity`
 `;
 
 export const CustomButtonText = styled.Text`
+  font-family: 'Poppins-Regular';
   font-size: 18px;
   color: #fff;
 `;

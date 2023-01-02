@@ -23,10 +23,11 @@ export const InfoArea = styled.View`
 
 export const UserName = styled.Text`
   font-size: 17px;
-  font-weight: bold;
+  font-family: 'Poppins-Bold';
 `;
 export const UserSpecialty = styled.Text`
   font-size: 12px;
+  font-family: 'Poppins-Regular';
 `;
 
 export const SeeProfileButton = styled.View`
@@ -42,5 +43,6 @@ export const SeeProfileButton = styled.View`
 
 export const SeeProfileButtonText = styled.Text`
   font-size: 13px;
+  font-family: 'Poppins-Regular';
   color: #268596;
 `;

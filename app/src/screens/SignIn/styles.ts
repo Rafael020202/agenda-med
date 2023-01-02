@@ -22,6 +22,7 @@ export const CustomButton = styled.TouchableOpacity`
 
 export const CustomButtonText = styled.Text`
   font-size: 18px;
+  font-family: 'Poppins-Regular';
   color: #fff;
 `;
 
@@ -34,12 +35,13 @@ export const SignMessageButton = styled.TouchableOpacity`
 
 export const SignMessageButtonText = styled.Text`
   font-size: 16px;
+  font-family: 'Poppins-Regular';
   color: #fff;
 `;
 
 export const SignMessageButtonBold = styled.Text`
   font-size: 16px;
-  font-weight: bold;
+  font-family: 'Poppins-Bold';
   margin-left: 5px;
   color: #fff;
 `;
