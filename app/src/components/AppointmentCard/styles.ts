@@ -23,7 +23,7 @@ export const UserInfoArea = styled.View`
 
 export const UserName = styled.Text`
   margin-left: 10px;
-  font-size: 18px;
+  font-size: 16px;
   font-family: 'Poppins-Bold';
 `;
 
@@ -36,14 +36,14 @@ export const ServiceInfoArea = styled.View`
 export const ServiceInfo = styled.View``;
 
 export const ServiceInfoText = styled.Text`
-  font-size: 16px;
+  font-size: 14px;
   font-family: 'Poppins-Bold';
 `;
 
 export const ServiceInfoCard = styled.View`
   background-color: #29abe2;
   border-radius: 5px;
-  padding: 10px;
+  padding: 8px;
   margin-top: 5px;
 `;
 

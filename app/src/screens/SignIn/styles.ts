@@ -34,13 +34,13 @@ export const SignMessageButton = styled.TouchableOpacity`
 `;
 
 export const SignMessageButtonText = styled.Text`
-  font-size: 16px;
+  font-size: 14px;
   font-family: 'Poppins-Regular';
   color: #fff;
 `;
 
 export const SignMessageButtonBold = styled.Text`
-  font-size: 16px;
+  font-size: 14px;
   font-family: 'Poppins-Bold';
   margin-left: 5px;
   color: #fff;
