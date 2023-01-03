@@ -11,10 +11,18 @@ export class DynamoCompanyRepository implements ICompanyRepository {
     params: ICompanyRepository.add['Params']
   ): Promise<ICompanyRepository.add['Result']> {
     const now = new Date();
+
+    const companyId = uuid();
     const company = {
       ...params,
-      id: uuid(),
-      services: params.services ?? [],
+      id: companyId,
+      services: params.services
+        ? params.services.map((service) => ({
+            id: uuid(),
+            company_id: companyId,
+            ...service,
+          }))
+        : [],
       created_at: now.toISOString(),
       updated_at: now.toISOString(),
     };

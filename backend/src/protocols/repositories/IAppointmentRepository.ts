@@ -1,4 +1,4 @@
-import { AppointmentModel } from '@/models';
+import { AppointmentModel, Service } from '@/models';
 
 export interface IAppointmentRepository {
   add(
@@ -16,7 +16,7 @@ export interface IAppointmentRepository {
   findByDateAndServiceId(
     date: string,
     serviceId: string
-  ): Promise<IAppointmentRepository.findByDate['Result']>;
+  ): Promise<IAppointmentRepository.findByDateAndServiceId['Result']>;
 }
 
 export namespace IAppointmentRepository {
@@ -24,6 +24,7 @@ export namespace IAppointmentRepository {
     Params: {
       user_id: string;
       service_id: string;
+      service: Service;
       provider_id: string;
       date: string;
     };
@@ -31,7 +32,7 @@ export namespace IAppointmentRepository {
     Result: AppointmentModel;
   };
 
-  export type findByDate = {
+  export type findByDateAndServiceId = {
     Result: AppointmentModel;
   };
 

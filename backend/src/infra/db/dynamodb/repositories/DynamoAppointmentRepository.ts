@@ -31,7 +31,7 @@ export class DynamoAppointmentRepository implements IAppointmentRepository {
   async findByDateAndServiceId(
     date: string,
     serviceId: string
-  ): Promise<IAppointmentRepository.findByDate['Result']> {
+  ): Promise<IAppointmentRepository.findByDateAndServiceId['Result']> {
     const result = await this.dynamo
       .query({
         TableName: env.AppointmentTableName,
