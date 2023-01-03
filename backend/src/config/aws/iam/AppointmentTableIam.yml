@@ -11,9 +11,9 @@ AppointmentTableIAM:
     - !Join ['/', ['${self:custom.AppointmentTable.arn}', 'index', 'dateIndex']]
     - !Join [
         '/',
-        ['${self:custom.AppointmentTable.arn}', 'index', 'doctorIdIndex'],
+        ['${self:custom.AppointmentTable.arn}', 'index', 'providerIdIndex'],
       ]
     - !Join [
         '/',
-        ['${self:custom.AppointmentTable.arn}', 'index', 'patientIdIndex'],
+        ['${self:custom.AppointmentTable.arn}', 'index', 'userIdIndex'],
       ]

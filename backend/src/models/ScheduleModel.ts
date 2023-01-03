@@ -1,6 +1,6 @@
 export type ScheduleModel = {
   id: string;
-  doctor_id: string;
+  provider_id: string;
   date: string;
   from: number;
   to: number;

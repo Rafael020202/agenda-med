@@ -18,10 +18,10 @@ export class ListAppointmentController implements Controller {
     const user = await this.userRepository.findById(request.userId);
     let appointments;
 
-    if (user.is_doctor) {
-      appointments = await this.appointmentRepository.listByDoctorId(user.id);
+    if (user.is_provider) {
+      appointments = await this.appointmentRepository.listByProviderId(user.id);
     } else {
-      appointments = await this.appointmentRepository.listByPatientId(user.id);
+      appointments = await this.appointmentRepository.listByUserId(user.id);
     }
 
     return ok(appointments);

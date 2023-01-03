@@ -28,22 +28,22 @@ export class DynamoAppointmentRepository implements IAppointmentRepository {
     return appointment;
   }
 
-  async findByDateAndDoctorId(
+  async findByDateAndServiceId(
     date: string,
-    doctorId: string
+    serviceId: string
   ): Promise<IAppointmentRepository.findByDate['Result']> {
     const result = await this.dynamo
       .query({
         TableName: env.AppointmentTableName,
         IndexName: 'dateIndex',
         KeyConditionExpression: '#date = :date',
-        FilterExpression: 'doctor_id = :doctor_id',
+        FilterExpression: 'service_id = :service_id',
         ExpressionAttributeNames: {
           '#date': 'date',
         },
         ExpressionAttributeValues: {
           ':date': date,
-          ':doctor_id': doctorId,
+          ':service_id': serviceId,
         },
       })
       .promise();
@@ -51,16 +51,16 @@ export class DynamoAppointmentRepository implements IAppointmentRepository {
     return <any>result.Items[0];
   }
 
-  async listByDoctorId(
-    doctorId: string
-  ): Promise<IAppointmentRepository.listByDoctorId['Result']> {
+  async listByProviderId(
+    providerId: string
+  ): Promise<IAppointmentRepository.listByProviderId['Result']> {
     const result = await this.dynamo
       .query({
         TableName: env.AppointmentTableName,
-        IndexName: 'doctorIdIndex',
-        KeyConditionExpression: 'doctor_id = :doctor_id',
+        IndexName: 'providerIdIndex',
+        KeyConditionExpression: 'provider_id = :provider_id',
         ExpressionAttributeValues: {
-          ':doctor_id': doctorId,
+          ':provider_id': providerId,
         },
       })
       .promise();
@@ -68,16 +68,16 @@ export class DynamoAppointmentRepository implements IAppointmentRepository {
     return <any>result.Items;
   }
 
-  async listByPatientId(
-    patientId: string
-  ): Promise<IAppointmentRepository.listByPatientId['Result']> {
+  async listByUserId(
+    userId: string
+  ): Promise<IAppointmentRepository.listByUserId['Result']> {
     const result = await this.dynamo
       .query({
         TableName: env.AppointmentTableName,
-        IndexName: 'patientIdIndex',
-        KeyConditionExpression: 'patient_id = :patient_id',
+        IndexName: 'userIdIndex',
+        KeyConditionExpression: 'user_id = :user_id',
         ExpressionAttributeValues: {
-          ':patient_id': patientId,
+          ':user_id': userId,
         },
       })
       .promise();

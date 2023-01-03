@@ -9,15 +9,15 @@ export interface IScheduleRepository {
 
   findById(id: string): Promise<IScheduleRepository.findById['Result']>;
 
-  findByDoctorId(
-    doctorId: string
+  findByProviderId(
+    providerId: string
   ): Promise<IScheduleRepository.findByDoctorId['Result']>;
 }
 
 export namespace IScheduleRepository {
   export type add = {
     Params: {
-      doctor_id: string;
+      provider_id: string;
       hours: string[];
       from?: number;
       to?: number;

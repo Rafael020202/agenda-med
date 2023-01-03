@@ -1,22 +1,14 @@
-import { AlreadyExistsError, MissingParamError, NotFoundError } from '@/errors';
-import { alreadyExists, badRequest, notFound, ok } from '@/helpers';
-import {
-  Controller,
-  HttpResponse,
-  IAppointmentRepository,
-  IUserRepository,
-} from '@/protocols';
+import { AlreadyExistsError, MissingParamError } from '@/errors';
+import { alreadyExists, badRequest, ok } from '@/helpers';
+import { Controller, HttpResponse, IAppointmentRepository } from '@/protocols';
 
 export class CreateAppointmentController implements Controller {
-  constructor(
-    private appointmentRepository: IAppointmentRepository,
-    private userRepository: IUserRepository
-  ) {}
+  constructor(private appointmentRepository: IAppointmentRepository) {}
 
   async handle(
     request: CreateAppointmentController.Request
   ): Promise<HttpResponse> {
-    const required = ['doctor_id', 'value', 'date'];
+    const required = ['service_id', 'date', 'provider_id'];
 
     for (const field of required) {
       if (!request[field]) {
@@ -24,31 +16,19 @@ export class CreateAppointmentController implements Controller {
       }
     }
 
-    const { date, doctor_id, value } = request;
+    const { date, service_id } = request;
     const appointmentExists =
-      await this.appointmentRepository.findByDateAndDoctorId(date, doctor_id);
+      await this.appointmentRepository.findByDateAndServiceId(date, service_id);
 
     if (appointmentExists) {
       return alreadyExists(new AlreadyExistsError('appointment'));
     }
 
-    const patient = await this.userRepository.findById(request.userId);
-
-    if (!patient) {
-      return notFound(new NotFoundError('patient'));
-    }
-
-    const doctor = await this.userRepository.findById(doctor_id);
-
-    if (!doctor || !doctor.is_doctor) {
-      return notFound(new NotFoundError('doctor'));
-    }
-
     const appointment = await this.appointmentRepository.add({
       date,
-      doctor_id,
-      patient_id: request.userId,
-      value,
+      service_id: request.service_id,
+      user_id: request.userId,
+      provider_id: request.provider_id,
     });
 
     return ok(appointment);
@@ -58,8 +38,8 @@ export class CreateAppointmentController implements Controller {
 export namespace CreateAppointmentController {
   export type Request = {
     userId: string;
-    doctor_id: string;
-    value: number;
+    service_id: string;
+    provider_id: string;
     date: string;
   };
 }

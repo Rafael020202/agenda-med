@@ -5,26 +5,26 @@ export interface IAppointmentRepository {
     params: IAppointmentRepository.add['Params']
   ): Promise<IAppointmentRepository.add['Result']>;
 
-  listByDoctorId(
-    doctorId: string
-  ): Promise<IAppointmentRepository.listByDoctorId['Result']>;
+  listByProviderId(
+    providerId: string
+  ): Promise<IAppointmentRepository.listByProviderId['Result']>;
 
-  listByPatientId(
-    patientId: string
-  ): Promise<IAppointmentRepository.listByPatientId['Result']>;
+  listByUserId(
+    userId: string
+  ): Promise<IAppointmentRepository.listByUserId['Result']>;
 
-  findByDateAndDoctorId(
+  findByDateAndServiceId(
     date: string,
-    doctorId: string
+    serviceId: string
   ): Promise<IAppointmentRepository.findByDate['Result']>;
 }
 
 export namespace IAppointmentRepository {
   export type add = {
     Params: {
-      patient_id: string;
-      doctor_id: string;
-      value: number;
+      user_id: string;
+      service_id: string;
+      provider_id: string;
       date: string;
     };
 
@@ -35,11 +35,11 @@ export namespace IAppointmentRepository {
     Result: AppointmentModel;
   };
 
-  export type listByDoctorId = {
+  export type listByProviderId = {
     Result: AppointmentModel[];
   };
 
-  export type listByPatientId = {
+  export type listByUserId = {
     Result: AppointmentModel[];
   };
 }

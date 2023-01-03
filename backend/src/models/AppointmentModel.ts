@@ -1,8 +1,8 @@
 export type AppointmentModel = {
   id: string;
-  patient_id: string;
-  doctor_id: string;
-  value: number;
+  service_id: string;
+  provider_id: string;
+  user_id: string;
   date: string;
   created_at: string;
   updated_at: string;

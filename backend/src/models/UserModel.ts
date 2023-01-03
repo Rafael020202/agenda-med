@@ -4,11 +4,7 @@ export type UserModel = {
   email: string;
   password: string;
   document: string;
-  latitude: number;
-  longitude: number;
-  is_doctor: boolean;
-  appointment_value: number;
-  specialty: string;
+  is_provider: boolean;
   created_at: string;
   updated_at: string;
 };

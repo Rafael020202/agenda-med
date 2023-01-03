@@ -18,24 +18,11 @@ export class SignUpController implements Controller {
     private userRepository: IUserRepository,
     private hashProvider: IHashProvider,
     private emailValidator: IEmailValidatorProvider,
-    private cpfValidator: IDocumentValidatorProvider,
-    private crmValidator: IDocumentValidatorProvider
+    private cpfValidator: IDocumentValidatorProvider
   ) {}
 
   async handle(request: CreateUserController.Request): Promise<HttpResponse> {
-    const required = [
-      'name',
-      'email',
-      'password',
-      'document',
-      'latitude',
-      'longitude',
-    ];
-
-    if (request.is_doctor) {
-      required.push('specialty');
-      required.push('appointment_value');
-    }
+    const required = ['name', 'email', 'password', 'document'];
 
     for (const field of required) {
       if (!request[field]) {
@@ -47,15 +34,7 @@ export class SignUpController implements Controller {
       return badRequest(new InvalidParamError('email'));
     }
 
-    let documentIsValid;
-
-    if (request.is_doctor) {
-      documentIsValid = await this.crmValidator.isValid(request.document);
-    } else {
-      documentIsValid = this.cpfValidator.isValid(request.document);
-    }
-
-    if (!documentIsValid) {
+    if (!this.cpfValidator.isValid(request.document)) {
       return badRequest(new InvalidParamError('document'));
     }
 
@@ -65,27 +44,13 @@ export class SignUpController implements Controller {
       return badRequest(new EmailAlreadyInUserError());
     }
 
-    const {
-      email,
-      name,
-      document,
-      password,
-      is_doctor,
-      latitude,
-      longitude,
-      specialty,
-      appointment_value,
-    } = request;
+    const { email, name, document, password, is_provider } = request;
     const hashedPassword = await this.hashProvider.hash(password, 8);
     const createdUser = await this.userRepository.add({
       email,
       name,
       document,
-      is_doctor,
-      latitude,
-      longitude,
-      specialty,
-      appointment_value,
+      is_provider,
       password: hashedPassword,
     });
 
@@ -102,11 +67,7 @@ export namespace CreateUserController {
     email: string;
     password: string;
     document: string;
-    latitude: number;
-    longitude: number;
-    is_doctor: boolean;
-    specialty: string;
-    appointment_value: number;
+    is_provider?: boolean;
   };
 
   export type Response = boolean;

@@ -23,11 +23,7 @@ export namespace IUserRepository {
       email: string;
       document: string;
       password: string;
-      latitude: number;
-      longitude: number;
-      is_doctor?: boolean;
-      appointment_value?: number;
-      specialty?: string;
+      is_provider?: boolean;
     };
 
     Result: UserModel;

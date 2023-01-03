@@ -8,7 +8,7 @@ ScheduleTable:
         AttributeType: S
       - AttributeName: date
         AttributeType: S
-      - AttributeName: doctor_id
+      - AttributeName: provider_id
         AttributeType: S
     KeySchema:
       - AttributeName: id
@@ -20,9 +20,9 @@ ScheduleTable:
             KeyType: HASH
         Projection:
           ProjectionType: ALL
-      - IndexName: doctorIdIndex
+      - IndexName: providerIdIndex
         KeySchema:
-          - AttributeName: doctor_id
+          - AttributeName: provider_id
             KeyType: HASH
         Projection:
           ProjectionType: ALL

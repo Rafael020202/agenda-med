@@ -23,7 +23,7 @@ export class AddToScheduleController implements Controller {
   ): Promise<HttpResponse> {
     const user = await this.userRepository.findById(request.userId);
 
-    if (!user.is_doctor) {
+    if (!user.is_provider) {
       return forbidden(new AccessDeniedError());
     }
 
@@ -40,7 +40,7 @@ export class AddToScheduleController implements Controller {
 
     if (isRecurrent) {
       createdSchedule = await this.scheduleRepository.add({
-        doctor_id: request.userId,
+        provider_id: request.userId,
         from: request.from,
         to: request.to,
         hours: request.hours,
@@ -62,7 +62,7 @@ export class AddToScheduleController implements Controller {
     }
 
     createdSchedule = await this.scheduleRepository.add({
-      doctor_id: request.userId,
+      provider_id: request.userId,
       date: request.date,
       hours: request.hours,
     });

@@ -5,8 +5,8 @@ export class ListScheduleController implements Controller {
   constructor(private scheduleRepository: IScheduleRepository) {}
 
   async handle(request: ListScheduleController.Request): Promise<HttpResponse> {
-    const schedule = await this.scheduleRepository.findByDoctorId(
-      request.doctorId
+    const schedule = await this.scheduleRepository.findByProviderId(
+      request.providerId
     );
 
     return ok(schedule);
@@ -15,6 +15,6 @@ export class ListScheduleController implements Controller {
 
 export namespace ListScheduleController {
   export type Request = {
-    doctorId: string;
+    providerId: string;
   };
 }
