@@ -7,3 +7,4 @@ export * from './ListScheduleController';
 export * from './ListAppointmentController';
 export * from './ListUserInfoController';
 export * from './CreateCompanyController';
+export * from './UpdateCompanyController';

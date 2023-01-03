@@ -48,4 +48,38 @@ export class DynamoCompanyRepository implements ICompanyRepository {
 
     return <any>result.Items;
   }
+
+  async findById(id: string): Promise<ICompanyRepository.findById['Result']> {
+    const result = await this.dynamo
+      .get({
+        TableName: env.CompanyTableName,
+        Key: { id },
+      })
+      .promise();
+
+    return <any>result.Item;
+  }
+
+  async updateAttr({
+    id,
+    attribute,
+    value,
+  }: ICompanyRepository.updateAttr['Params']): Promise<
+    ICompanyRepository.updateAttr['Result']
+  > {
+    await this.dynamo
+      .update({
+        TableName: env.CompanyTableName,
+        Key: { id },
+        UpdateExpression: `set #${attribute} = :value`,
+        ExpressionAttributeNames: {
+          [`#${attribute}`]: attribute,
+        },
+        ExpressionAttributeValues: {
+          ':value': value,
+        },
+        ReturnValues: 'ALL_NEW',
+      })
+      .promise();
+  }
 }

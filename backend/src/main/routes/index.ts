@@ -10,6 +10,7 @@ import {
   makeListAppointmentController,
   makeListUserInfoController,
   makeCreateCompanyController,
+  makeUpdateCompanyController,
   makeAuthMiddleware,
 } from '@/main/factories';
 import {
@@ -37,6 +38,11 @@ router.get(
   '/company',
   expressMiddlewareDecorator(makeAuthMiddleware()),
   expressRouteDecorator(makeListCompaniesByLocationController())
+);
+router.patch(
+  '/company/:id',
+  expressMiddlewareDecorator(makeAuthMiddleware()),
+  expressRouteDecorator(makeUpdateCompanyController())
 );
 
 router.post(

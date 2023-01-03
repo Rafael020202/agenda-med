@@ -8,6 +8,12 @@ export interface ICompanyRepository {
   listByLagitudeAndLogitude(
     params: ICompanyRepository.listByLagitudeAndLogitude['Params']
   ): Promise<ICompanyRepository.listByLagitudeAndLogitude['Result']>;
+
+  updateAttr(
+    params: ICompanyRepository.updateAttr['Params']
+  ): Promise<ICompanyRepository.updateAttr['Result']>;
+
+  findById(companyId: string): Promise<ICompanyRepository.findById['Result']>;
 }
 
 export namespace ICompanyRepository {
@@ -34,5 +40,19 @@ export namespace ICompanyRepository {
     };
 
     Result: Company[];
+  };
+
+  export type updateAttr = {
+    Params: {
+      id: string;
+      attribute: string;
+      value: string;
+    };
+
+    Result: void;
+  };
+
+  export type findById = {
+    Result: Company;
   };
 }
