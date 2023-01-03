@@ -3,7 +3,7 @@ import { Router } from 'express';
 import {
   makeSignUpController,
   makeLoginController,
-  makeListDoctorsByLocationController,
+  makeListCompaniesByLocationController,
   makeAddToScheduleController,
   makeCreateAppointmentController,
   makeListScheduleController,
@@ -23,12 +23,6 @@ router.post('/signup', expressRouteDecorator(makeSignUpController()));
 router.post('/signin', expressRouteDecorator(makeLoginController()));
 
 router.get(
-  '/doctors',
-  expressMiddlewareDecorator(makeAuthMiddleware()),
-  expressRouteDecorator(makeListDoctorsByLocationController())
-);
-
-router.get(
   '/user/:user_id',
   expressMiddlewareDecorator(makeAuthMiddleware()),
   expressRouteDecorator(makeListUserInfoController())
@@ -38,6 +32,11 @@ router.post(
   '/company',
   expressMiddlewareDecorator(makeAuthMiddleware()),
   expressRouteDecorator(makeCreateCompanyController())
+);
+router.get(
+  '/company',
+  expressMiddlewareDecorator(makeAuthMiddleware()),
+  expressRouteDecorator(makeListCompaniesByLocationController())
 );
 
 router.post(

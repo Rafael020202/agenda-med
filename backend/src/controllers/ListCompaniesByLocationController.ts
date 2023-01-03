@@ -1,12 +1,12 @@
 import { ok, badRequest } from '@/helpers';
 import { MissingParamError } from '@/errors';
-import { Controller, HttpResponse, IUserRepository } from '@/protocols';
+import { Controller, HttpResponse, ICompanyRepository } from '@/protocols';
 
-export class ListDoctorsByLocationController implements Controller {
-  constructor(private userRepository: IUserRepository) {}
+export class ListCompaniesByLocationController implements Controller {
+  constructor(private companyRepository: ICompanyRepository) {}
 
   async handle(
-    request: ListDoctorsByLocationController.Request
+    request: ListCompaniesByLocationController.Request
   ): Promise<HttpResponse> {
     const required = ['latitude', 'longitude'];
 
@@ -16,20 +16,18 @@ export class ListDoctorsByLocationController implements Controller {
       }
     }
 
-    const result = await this.userRepository.listByLagitudeAndLogitude({
+    const result = await this.companyRepository.listByLagitudeAndLogitude({
       latitude: Number(request.latitude),
       longitude: Number(request.longitude),
-      specialty: request.specialty,
     });
 
-    return ok({ data: result });
+    return ok(result);
   }
 }
 
-export namespace ListDoctorsByLocationController {
+export namespace ListCompaniesByLocationController {
   export type Request = {
     latitude: number;
     longitude: number;
-    specialty?: string;
   };
 }

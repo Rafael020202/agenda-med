@@ -28,4 +28,24 @@ export class DynamoCompanyRepository implements ICompanyRepository {
 
     return company;
   }
+
+  async listByLagitudeAndLogitude(
+    params: ICompanyRepository.listByLagitudeAndLogitude['Params']
+  ): Promise<ICompanyRepository.listByLagitudeAndLogitude['Result']> {
+    const result = await this.dynamo
+      .query({
+        TableName: env.CompanyTableName,
+        IndexName: 'latitudeLongitudeIndex',
+        KeyConditionExpression:
+          'latitude = :latitude AND longitude = :longitude',
+
+        ExpressionAttributeValues: {
+          ':longitude': params.longitude,
+          ':latitude': params.latitude,
+        },
+      })
+      .promise();
+
+    return <any>result.Items;
+  }
 }
