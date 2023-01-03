@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Stars } from '@/components';
+import { Stars, AppointmentModal } from '@/components';
 import {
   Container,
   ServiceDetailArea,
@@ -16,11 +16,18 @@ import {
   AppointmentButton,
   AppointmentButtonText,
   BackButton,
+  Backdrop,
 } from './styles';
 
 import BackIcon from '@/assets/back.svg';
 
 export const ServiceDetail: React.FC = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleModalVisible = (visible: boolean) => {
+    setModalVisible(visible);
+  };
+
   return (
     <Container>
       <ServiceDetailArea>
@@ -62,14 +69,21 @@ export const ServiceDetail: React.FC = () => {
         </ServiceInfoArea>
 
         <AppointmentButtonArea>
-          <AppointmentButton>
+          <AppointmentButton onPress={() => handleModalVisible(true)}>
             <AppointmentButtonText>AGENDAR</AppointmentButtonText>
           </AppointmentButton>
         </AppointmentButtonArea>
       </ServiceDetailArea>
+
       <BackButton>
         <BackIcon width="44" height="44" fill="#ffffff" />
       </BackButton>
+
+      <Backdrop style={{ display: modalVisible ? 'flex' : 'none' }} />
+      <AppointmentModal
+        visible={modalVisible}
+        handleModalVisible={handleModalVisible}
+      />
     </Container>
   );
 };

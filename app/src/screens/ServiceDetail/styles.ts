@@ -15,8 +15,8 @@ export const ServiceDetailArea = styled.View`
 `;
 
 export const Avatar = styled.Image`
-  width: 110;
-  height: 110;
+  width: 110px;
+  height: 110px;
   border-radius: 20px;
 
   border: 2px solid #fff;
@@ -39,7 +39,7 @@ export const UserInfo = styled.View`
 
 export const UserName = styled.Text`
   font-size: 18px;
-  font-weight: bold;
+  font-family: 'Poppins-Bold';
 `;
 
 export const ServiceInfoArea = styled.View`
@@ -54,12 +54,13 @@ export const ServiceInfo = styled.View`
 `;
 
 export const ServiceInfoLabel = styled.Text`
-  font-weight: bold;
+  font-family: 'Poppins-Bold';
   font-size: 16px;
 `;
 
 export const ServiceInfoDescription = styled.Text`
   font-size: 14px;
+  font-family: 'Poppins-Regular';
 `;
 
 export const AppointmentButtonArea = styled.View`
@@ -85,4 +86,14 @@ export const BackButton = styled.View`
   top: 0;
   left: 0;
   z-index: 10;
+`;
+
+export const Backdrop = styled.View`
+  flex: 1;
+  background-color: black;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+  opacity: 0.5;
 `;
