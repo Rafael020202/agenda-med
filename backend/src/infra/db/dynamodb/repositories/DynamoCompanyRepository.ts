@@ -22,7 +22,7 @@ export class DynamoCompanyRepository implements ICompanyRepository {
     await this.dynamo
       .put({
         Item: company,
-        TableName: env.ScheduleTableName,
+        TableName: env.CompanyTableName,
       })
       .promise();
 
