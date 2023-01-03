@@ -6,3 +6,4 @@ export * from './CreateAppointmentControllerFactory';
 export * from './ListScheduleControllerFactory';
 export * from './ListAppointmentControllerFactory';
 export * from './ListUserInfoControllerFactory';
+export * from './CreateCompanyControllerFactory';

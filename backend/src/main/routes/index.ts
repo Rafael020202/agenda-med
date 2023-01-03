@@ -9,6 +9,7 @@ import {
   makeListScheduleController,
   makeListAppointmentController,
   makeListUserInfoController,
+  makeCreateCompanyController,
   makeAuthMiddleware,
 } from '@/main/factories';
 import {
@@ -31,6 +32,12 @@ router.get(
   '/user/:user_id',
   expressMiddlewareDecorator(makeAuthMiddleware()),
   expressRouteDecorator(makeListUserInfoController())
+);
+
+router.post(
+  '/company',
+  expressMiddlewareDecorator(makeAuthMiddleware()),
+  expressRouteDecorator(makeCreateCompanyController())
 );
 
 router.post(

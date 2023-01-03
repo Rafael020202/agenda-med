@@ -1,0 +1,18 @@
+CompanyTableIAM:
+  Effect: Allow
+  Action:
+    - dynamodb:PutItem
+    - dynamodb:Scan
+    - dynamodb:GetItem
+    - dynamodb:UpdateItem
+    - dynamodb:Query
+  Resource:
+    - ${self:custom.CompanyTable.arn}
+    - !Join [
+        '/',
+        ['${self:custom.CompanyTable.arn}', 'index', 'providerIdIndex'],
+      ]
+    - !Join [
+        '/',
+        ['${self:custom.CompanyTable.arn}', 'index', 'latitudeLongitudeIndex'],
+      ]
