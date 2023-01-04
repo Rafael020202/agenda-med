@@ -7,3 +7,4 @@ export * from './ListScheduleControllerFactory';
 export * from './ListAppointmentControllerFactory';
 export * from './ListUserInfoControllerFactory';
 export * from './ListProvidersByLocationControllerFactory';
+export * from './CreateServiceControllerFactory';

@@ -9,6 +9,7 @@ import {
   makeListScheduleController,
   makeListAppointmentController,
   makeListUserInfoController,
+  makeCreateServiceController,
   makeAuthMiddleware,
 } from '@/main/factories';
 import {
@@ -52,6 +53,12 @@ router.get(
   '/appointment',
   expressMiddlewareDecorator(makeAuthMiddleware()),
   expressRouteDecorator(makeListAppointmentController())
+);
+
+router.post(
+  '/service',
+  expressMiddlewareDecorator(makeAuthMiddleware()),
+  expressRouteDecorator(makeCreateServiceController())
 );
 
 export default router;

@@ -6,3 +6,4 @@ export * from './CreateAppointmentController';
 export * from './ListScheduleController';
 export * from './ListAppointmentController';
 export * from './ListUserInfoController';
+export * from './CreateServiceController';
