@@ -7,7 +7,6 @@ provider:
   stage: ${opt:stage, 'dev'}
   environment:
     USERS_TABLE: ${self:custom.UsersTable.name}
-    COMPANY_TABLE: ${self:custom.CompanyTable.name}
     SERVICE_TABLE: ${self:custom.ServiceTable.name}
     SCHEDULE_TABLE: ${self:custom.ScheduleTable.name}
     APPOINTMENT_TABLE: ${self:custom.AppointmentTable.name}
@@ -20,7 +19,6 @@ provider:
     - ${file(src/config/aws/iam/ScheduleTableIam.yml):ScheduleTableIAM}
     - ${file(src/config/aws/iam/ServiceTableIam.yml):ServiceTableIAM}
     - ${file(src/config/aws/iam/AppointmentTableIam.yml):AppointmentTableIAM}
-    - ${file(src/config/aws/iam/CompanyTableIam.yml):CompanyTableIAM}
     - ${file(src/config/aws/iam/VerifyCrmQueueIam.yml):VerifyCrmQueueIAM}
 
 resources:
@@ -29,7 +27,6 @@ resources:
     ScheduleTable: ${file(src/config/aws/resources/ScheduleTableResource.yml):ScheduleTable}
     ServiceTable: ${file(src/config/aws/resources/ServiceTableResource.yml):ServiceTable}
     AppointmentTable: ${file(src/config/aws/resources/AppointmentTableResource.yml):AppointmentTable}
-    CompanyTable: ${file(src/config/aws/resources/CompanyTableResource.yml):CompanyTable}
     VerifyCrmQueue: ${file(src/config/aws/resources/VerifyCrmQueueResource.yml):VerifyCrmQueue}
 
 plugins:
@@ -52,9 +49,6 @@ custom:
   AppointmentTable:
     name: !Ref AppointmentTable
     arn: !GetAtt AppointmentTable.Arn
-  CompanyTable:
-    name: !Ref CompanyTable
-    arn: !GetAtt CompanyTable.Arn
   ServiceTable:
     name: !Ref ServiceTable
     arn: !GetAtt ServiceTable.Arn
