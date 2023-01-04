@@ -44,6 +44,8 @@ export namespace CreateAppointmentController {
       provider_id: string;
       name: string;
       value: number;
+      created_at: string;
+      updated_at: string;
     };
     provider_id: string;
     date: string;
