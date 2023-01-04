@@ -1,4 +1,4 @@
-import { AppointmentModel, Service } from '@/models';
+import { AppointmentModel, ServiceModel } from '@/models';
 
 export interface IAppointmentRepository {
   add(
@@ -24,7 +24,7 @@ export namespace IAppointmentRepository {
     Params: {
       user_id: string;
       service_id: string;
-      service: Service;
+      service: ServiceModel;
       date: string;
     };
 
