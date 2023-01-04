@@ -4,6 +4,10 @@ export interface IServiceRepository {
   add(
     params: IServiceRepository.add['Params']
   ): Promise<IServiceRepository.add['Result']>;
+
+  listByProviderId(
+    providerId: string
+  ): Promise<IServiceRepository.listByProviderId['Result']>;
 }
 
 export namespace IServiceRepository {
@@ -15,5 +19,9 @@ export namespace IServiceRepository {
     };
 
     Result: ServiceModel;
+  };
+
+  export type listByProviderId = {
+    Result: ServiceModel[];
   };
 }

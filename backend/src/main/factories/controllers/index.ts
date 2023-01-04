@@ -8,3 +8,4 @@ export * from './ListAppointmentControllerFactory';
 export * from './ListUserInfoControllerFactory';
 export * from './ListProvidersByLocationControllerFactory';
 export * from './CreateServiceControllerFactory';
+export * from './ListProviderServicesControllerFactory';

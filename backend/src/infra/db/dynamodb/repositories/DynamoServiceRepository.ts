@@ -27,4 +27,21 @@ export class DynamoServiceRepository implements IServiceRepository {
 
     return service;
   }
+
+  async listByProviderId(
+    providerId: string
+  ): Promise<IServiceRepository.listByProviderId['Result']> {
+    const result = await this.dynamo
+      .query({
+        TableName: env.ServiceTableName,
+        IndexName: 'providerIdIndex',
+        KeyConditionExpression: 'provider_id = :provider_id',
+        ExpressionAttributeValues: {
+          ':provider_id': providerId,
+        },
+      })
+      .promise();
+
+    return <any>result.Items;
+  }
 }
