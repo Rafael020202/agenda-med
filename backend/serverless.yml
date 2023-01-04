@@ -12,14 +12,12 @@ provider:
     APPOINTMENT_TABLE: ${self:custom.AppointmentTable.name}
     INFO_SIMPLES_BASE_URL: https://api.infosimples.com/api/v2
     INFO_SIMPLES_TOKEN: QPBspihj4172CQVC3edlJH3C09LhzxxhPaTcXpZo
-    VERIFY_CRM_QUEUE_URL: ${self:custom.VerifyCrmQueue.url}
     JWT_SECRET: 'Kvgto33az'
   iamRoleStatements:
     - ${file(src/config/aws/iam/UsersTableIam.yml):UsersTableIAM}
     - ${file(src/config/aws/iam/ScheduleTableIam.yml):ScheduleTableIAM}
     - ${file(src/config/aws/iam/ServiceTableIam.yml):ServiceTableIAM}
     - ${file(src/config/aws/iam/AppointmentTableIam.yml):AppointmentTableIAM}
-    - ${file(src/config/aws/iam/VerifyCrmQueueIam.yml):VerifyCrmQueueIAM}
 
 resources:
   Resources:
@@ -27,7 +25,6 @@ resources:
     ScheduleTable: ${file(src/config/aws/resources/ScheduleTableResource.yml):ScheduleTable}
     ServiceTable: ${file(src/config/aws/resources/ServiceTableResource.yml):ServiceTable}
     AppointmentTable: ${file(src/config/aws/resources/AppointmentTableResource.yml):AppointmentTable}
-    VerifyCrmQueue: ${file(src/config/aws/resources/VerifyCrmQueueResource.yml):VerifyCrmQueue}
 
 plugins:
   - serverless-esbuild
@@ -52,10 +49,6 @@ custom:
   ServiceTable:
     name: !Ref ServiceTable
     arn: !GetAtt ServiceTable.Arn
-  VerifyCrmQueue:
-    name: VerifyCrmQueue-${self:provider.stage}
-    arn: !GetAtt VerifyCrmQueue.Arn
-    url: !Ref VerifyCrmQueue
   esbuild:
     bundle: true
     minify: false

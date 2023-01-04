@@ -1,4 +1,0 @@
-VerifyCrmQueue:
-  Type: AWS::SQS::Queue
-  Properties:
-    QueueName: ${self:custom.VerifyCrmQueue.name}
