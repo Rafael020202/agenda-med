@@ -29,7 +29,6 @@ export class CreateAppointmentController implements Controller {
       service,
       service_id,
       user_id: request.userId,
-      provider_id: request.provider_id,
     });
 
     return ok(appointment);
@@ -42,7 +41,7 @@ export namespace CreateAppointmentController {
     service_id: string;
     service: {
       id: string;
-      company_id: string;
+      provider_id: string;
       name: string;
       value: number;
     };

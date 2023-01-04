@@ -25,7 +25,6 @@ export namespace IAppointmentRepository {
       user_id: string;
       service_id: string;
       service: Service;
-      provider_id: string;
       date: string;
     };
 

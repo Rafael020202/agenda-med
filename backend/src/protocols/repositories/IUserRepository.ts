@@ -21,9 +21,15 @@ export namespace IUserRepository {
     Params: {
       name: string;
       email: string;
-      document: string;
       password: string;
+      document: string;
       is_provider?: boolean;
+      city?: string;
+      state_abbr?: string;
+      address?: string;
+      postcode?: string;
+      latitude?: number;
+      longitude?: number;
     };
 
     Result: UserModel;

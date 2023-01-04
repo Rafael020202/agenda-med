@@ -1,7 +1,9 @@
+import { Service } from '@/models';
+
 export type AppointmentModel = {
   id: string;
   service_id: string;
-  provider_id: string;
+  service: Service;
   user_id: string;
   date: string;
   created_at: string;

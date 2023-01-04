@@ -3,14 +3,12 @@ import { Router } from 'express';
 import {
   makeSignUpController,
   makeLoginController,
-  makeListCompaniesByLocationController,
+  makeListProvidersByLocationController,
   makeAddToScheduleController,
   makeCreateAppointmentController,
   makeListScheduleController,
   makeListAppointmentController,
   makeListUserInfoController,
-  makeCreateCompanyController,
-  makeUpdateCompanyController,
   makeAuthMiddleware,
 } from '@/main/factories';
 import {
@@ -28,21 +26,10 @@ router.get(
   expressMiddlewareDecorator(makeAuthMiddleware()),
   expressRouteDecorator(makeListUserInfoController())
 );
-
-router.post(
-  '/company',
-  expressMiddlewareDecorator(makeAuthMiddleware()),
-  expressRouteDecorator(makeCreateCompanyController())
-);
 router.get(
-  '/company',
+  '/users',
   expressMiddlewareDecorator(makeAuthMiddleware()),
-  expressRouteDecorator(makeListCompaniesByLocationController())
-);
-router.patch(
-  '/company/:id',
-  expressMiddlewareDecorator(makeAuthMiddleware()),
-  expressRouteDecorator(makeUpdateCompanyController())
+  expressRouteDecorator(makeListProvidersByLocationController())
 );
 
 router.post(

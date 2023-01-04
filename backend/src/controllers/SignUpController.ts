@@ -24,6 +24,15 @@ export class SignUpController implements Controller {
   async handle(request: CreateUserController.Request): Promise<HttpResponse> {
     const required = ['name', 'email', 'password', 'document'];
 
+    if (request.is_provider) {
+      required.push('city');
+      required.push('state_abbr');
+      required.push('address');
+      required.push('postcode');
+      required.push('latitude');
+      required.push('longitude');
+    }
+
     for (const field of required) {
       if (!request[field]) {
         return badRequest(new MissingParamError(field));
@@ -44,13 +53,31 @@ export class SignUpController implements Controller {
       return badRequest(new EmailAlreadyInUserError());
     }
 
-    const { email, name, document, password, is_provider } = request;
+    const {
+      email,
+      name,
+      document,
+      password,
+      is_provider,
+      address,
+      city,
+      latitude,
+      longitude,
+      postcode,
+      state_abbr,
+    } = request;
     const hashedPassword = await this.hashProvider.hash(password, 8);
     const createdUser = await this.userRepository.add({
       email,
       name,
       document,
       is_provider,
+      address,
+      city,
+      latitude,
+      longitude,
+      postcode,
+      state_abbr,
       password: hashedPassword,
     });
 
@@ -68,6 +95,12 @@ export namespace CreateUserController {
     password: string;
     document: string;
     is_provider?: boolean;
+    city?: string;
+    state_abbr?: string;
+    address?: string;
+    postcode?: string;
+    latitude?: number;
+    longitude?: number;
   };
 
   export type Response = boolean;

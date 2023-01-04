@@ -4,7 +4,13 @@ export type UserModel = {
   email: string;
   password: string;
   document: string;
-  is_provider: boolean;
+  is_provider?: boolean;
+  city?: string;
+  state_abbr?: string;
+  address?: string;
+  postcode?: string;
+  latitude?: number;
+  longitude?: number;
   created_at: string;
   updated_at: string;
 };

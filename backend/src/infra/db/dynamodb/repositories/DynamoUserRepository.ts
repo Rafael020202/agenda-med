@@ -15,6 +15,12 @@ export class DynamoUserRepository implements IUserRepository {
       ...params,
       id: uuid(),
       is_provider: params.is_provider ?? false,
+      address: params.address ?? '',
+      city: params.city ?? '',
+      latitude: params.latitude ?? 0,
+      longitude: params.longitude ?? 0,
+      postcode: params.postcode ?? '',
+      state_abbr: params.state_abbr ?? '',
       created_at: now.toISOString(),
       updated_at: now.toISOString(),
     };
