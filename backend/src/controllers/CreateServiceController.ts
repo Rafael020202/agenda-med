@@ -1,14 +1,22 @@
-import { MissingParamError } from '@/errors';
-import { badRequest, ok } from '@/helpers';
-import { Controller, HttpResponse, IServiceRepository } from '@/protocols';
+import { MissingParamError, NotFoundError } from '@/errors';
+import { badRequest, notFound, ok } from '@/helpers';
+import {
+  Controller,
+  HttpResponse,
+  IProviderRepository,
+  IServiceRepository,
+} from '@/protocols';
 
 export class CreateServiceController implements Controller {
-  constructor(private serviceRepository: IServiceRepository) {}
+  constructor(
+    private serviceRepository: IServiceRepository,
+    private providerRepository: IProviderRepository
+  ) {}
 
   async handle(
     request: CreateServiceController.Request
   ): Promise<HttpResponse> {
-    const required = ['provider_id', 'value', 'name'];
+    const required = ['value', 'name'];
 
     for (const field of required) {
       if (!request[field]) {
@@ -16,10 +24,16 @@ export class CreateServiceController implements Controller {
       }
     }
 
-    const { name, provider_id, value } = request;
+    const provider = await this.providerRepository.findById(request.userId);
+
+    if (!provider) {
+      return notFound(new NotFoundError('provider'));
+    }
+
+    const { name, value, userId } = request;
     const service = await this.serviceRepository.add({
       name,
-      provider_id,
+      provider_id: userId,
       value,
     });
 
@@ -29,7 +43,7 @@ export class CreateServiceController implements Controller {
 
 export namespace CreateServiceController {
   export type Request = {
-    provider_id: string;
+    userId: string;
     name: string;
     value: number;
   };
