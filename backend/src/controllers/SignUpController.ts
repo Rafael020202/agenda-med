@@ -31,6 +31,8 @@ export class SignUpController implements Controller {
       required.push('postcode');
       required.push('latitude');
       required.push('longitude');
+      required.push('district');
+      required.push('number');
     }
 
     for (const field of required) {
@@ -61,6 +63,8 @@ export class SignUpController implements Controller {
       is_provider,
       address,
       city,
+      district,
+      number,
       latitude,
       longitude,
       postcode,
@@ -77,6 +81,8 @@ export class SignUpController implements Controller {
       latitude,
       longitude,
       postcode,
+      district,
+      number,
       state_abbr,
       password: hashedPassword,
     });
@@ -96,6 +102,8 @@ export namespace CreateUserController {
     document: string;
     is_provider?: boolean;
     city?: string;
+    district?: string;
+    number?: number;
     state_abbr?: string;
     address?: string;
     postcode?: string;

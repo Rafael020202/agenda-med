@@ -8,6 +8,8 @@ export type UserModel = {
   city?: string;
   state_abbr?: string;
   address?: string;
+  district?: string;
+  number?: number;
   postcode?: string;
   latitude?: number;
   longitude?: number;

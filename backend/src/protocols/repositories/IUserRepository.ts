@@ -25,6 +25,8 @@ export namespace IUserRepository {
       document: string;
       is_provider?: boolean;
       city?: string;
+      district?: string;
+      number?: number;
       state_abbr?: string;
       address?: string;
       postcode?: string;
