@@ -1,5 +1,5 @@
-import { MissingParamError, NotFoundError } from '@/errors';
-import { badRequest, notFound, ok } from '@/helpers';
+import { AccessDeniedError, MissingParamError } from '@/errors';
+import { badRequest, forbidden, ok } from '@/helpers';
 import {
   Controller,
   HttpResponse,
@@ -27,7 +27,7 @@ export class CreateServiceController implements Controller {
     const provider = await this.providerRepository.findById(request.userId);
 
     if (!provider) {
-      return notFound(new NotFoundError('provider'));
+      return forbidden(new AccessDeniedError());
     }
 
     const { name, value, userId } = request;
