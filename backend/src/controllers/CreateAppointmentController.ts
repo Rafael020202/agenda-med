@@ -16,9 +16,12 @@ export class CreateAppointmentController implements Controller {
       }
     }
 
-    const { date, service, service_id } = request;
+    const { date, service, provider_id, service_id } = request;
     const appointmentExists =
-      await this.appointmentRepository.findByDateAndServiceId(date, service_id);
+      await this.appointmentRepository.findByDateAndProviderId(
+        date,
+        provider_id
+      );
 
     if (appointmentExists) {
       return alreadyExists(new AlreadyExistsError('appointment'));
@@ -28,6 +31,7 @@ export class CreateAppointmentController implements Controller {
       date,
       service,
       service_id,
+      provider_id,
       user_id: request.userId,
     });
 

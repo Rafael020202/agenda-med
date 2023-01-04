@@ -28,22 +28,22 @@ export class DynamoAppointmentRepository implements IAppointmentRepository {
     return appointment;
   }
 
-  async findByDateAndServiceId(
+  async findByDateAndProviderId(
     date: string,
-    serviceId: string
-  ): Promise<IAppointmentRepository.findByDateAndServiceId['Result']> {
+    providerId: string
+  ): Promise<IAppointmentRepository.findByDateAndProviderId['Result']> {
     const result = await this.dynamo
       .query({
         TableName: env.AppointmentTableName,
         IndexName: 'dateIndex',
         KeyConditionExpression: '#date = :date',
-        FilterExpression: 'service_id = :service_id',
+        FilterExpression: 'provider_id = :provider_id',
         ExpressionAttributeNames: {
           '#date': 'date',
         },
         ExpressionAttributeValues: {
           ':date': date,
-          ':service_id': serviceId,
+          ':provider_id': providerId,
         },
       })
       .promise();

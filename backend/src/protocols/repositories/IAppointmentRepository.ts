@@ -13,10 +13,10 @@ export interface IAppointmentRepository {
     userId: string
   ): Promise<IAppointmentRepository.listByUserId['Result']>;
 
-  findByDateAndServiceId(
+  findByDateAndProviderId(
     date: string,
-    serviceId: string
-  ): Promise<IAppointmentRepository.findByDateAndServiceId['Result']>;
+    providerId: string
+  ): Promise<IAppointmentRepository.findByDateAndProviderId['Result']>;
 }
 
 export namespace IAppointmentRepository {
@@ -24,6 +24,7 @@ export namespace IAppointmentRepository {
     Params: {
       user_id: string;
       service_id: string;
+      provider_id: string;
       service: ServiceModel;
       date: string;
     };
@@ -31,7 +32,7 @@ export namespace IAppointmentRepository {
     Result: AppointmentModel;
   };
 
-  export type findByDateAndServiceId = {
+  export type findByDateAndProviderId = {
     Result: AppointmentModel;
   };
 
