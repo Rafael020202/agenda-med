@@ -1,8 +1,8 @@
 import { ListProvidersByLocationController } from '@/controllers';
-import { DynamoUserRepository } from '@/infra/db';
+import { DynamoProviderRepository } from '@/infra/db';
 
 export const makeListProvidersByLocationController = () => {
-  const userRepository = new DynamoUserRepository();
+  const providerRepository = new DynamoProviderRepository();
 
-  return new ListProvidersByLocationController(userRepository);
+  return new ListProvidersByLocationController(providerRepository);
 };

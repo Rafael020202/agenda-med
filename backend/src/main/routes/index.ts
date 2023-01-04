@@ -28,8 +28,9 @@ router.get(
   expressMiddlewareDecorator(makeAuthMiddleware()),
   expressRouteDecorator(makeListUserInfoController())
 );
+
 router.get(
-  '/users',
+  '/providers',
   expressMiddlewareDecorator(makeAuthMiddleware()),
   expressRouteDecorator(makeListProvidersByLocationController())
 );

@@ -8,22 +8,22 @@ import { forbidden, ok, alreadyExists, badRequest } from '@/helpers';
 import {
   Controller,
   HttpResponse,
-  IUserRepository,
   IScheduleRepository,
+  IProviderRepository,
 } from '@/protocols';
 
 export class AddToScheduleController implements Controller {
   constructor(
-    private userRepository: IUserRepository,
+    private providerRepository: IProviderRepository,
     private scheduleRepository: IScheduleRepository
   ) {}
 
   async handle(
     request: AddToScheduleController.Request
   ): Promise<HttpResponse> {
-    const user = await this.userRepository.findById(request.userId);
+    const provider = await this.providerRepository.findById(request.userId);
 
-    if (!user.is_provider) {
+    if (!provider) {
       return forbidden(new AccessDeniedError());
     }
 

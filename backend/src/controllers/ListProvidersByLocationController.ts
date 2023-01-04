@@ -1,9 +1,9 @@
 import { ok, badRequest } from '@/helpers';
 import { MissingParamError } from '@/errors';
-import { Controller, HttpResponse, IUserRepository } from '@/protocols';
+import { Controller, HttpResponse, IProviderRepository } from '@/protocols';
 
 export class ListProvidersByLocationController implements Controller {
-  constructor(private userReposytory: IUserRepository) {}
+  constructor(private providerRepository: IProviderRepository) {}
 
   async handle(
     request: ListProvidersByLocationController.Request
@@ -16,7 +16,7 @@ export class ListProvidersByLocationController implements Controller {
       }
     }
 
-    const result = await this.userReposytory.listByLagitudeAndLogitude({
+    const result = await this.providerRepository.listByLocation({
       latitude: Number(request.latitude),
       longitude: Number(request.longitude),
     });
