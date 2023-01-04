@@ -9,9 +9,9 @@ export interface IScheduleRepository {
 
   findById(id: string): Promise<IScheduleRepository.findById['Result']>;
 
-  findByProviderId(
+  listByProviderId(
     providerId: string
-  ): Promise<IScheduleRepository.findByDoctorId['Result']>;
+  ): Promise<IScheduleRepository.listByProviderId['Result']>;
 }
 
 export namespace IScheduleRepository {
@@ -35,7 +35,7 @@ export namespace IScheduleRepository {
     Result: ScheduleModel;
   };
 
-  export type findByDoctorId = {
-    Result: ScheduleModel;
+  export type listByProviderId = {
+    Result: ScheduleModel[];
   };
 }

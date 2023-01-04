@@ -5,7 +5,7 @@ export class ListScheduleController implements Controller {
   constructor(private scheduleRepository: IScheduleRepository) {}
 
   async handle(request: ListScheduleController.Request): Promise<HttpResponse> {
-    const schedule = await this.scheduleRepository.findByProviderId(
+    const schedule = await this.scheduleRepository.listByProviderId(
       request.providerId
     );
 

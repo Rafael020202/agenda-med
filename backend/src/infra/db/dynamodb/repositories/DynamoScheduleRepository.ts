@@ -63,9 +63,9 @@ export class DynamoScheduleRepository implements IScheduleRepository {
     return <any>result.Items[0];
   }
 
-  async findByProviderId(
+  async listByProviderId(
     providerId: string
-  ): Promise<IScheduleRepository.findByDoctorId['Result']> {
+  ): Promise<IScheduleRepository.listByProviderId['Result']> {
     const result = await this.dynamo
       .query({
         TableName: env.ScheduleTableName,
