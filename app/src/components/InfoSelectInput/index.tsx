@@ -4,7 +4,7 @@ import { Platform } from 'react-native';
 
 import { InputArea, Container, InputLabel } from './styles';
 
-export const SelectInput = ({ placeholder }) => {
+export const InfoSelectInput = ({ placeholder }) => {
   return (
     <Container>
       <InputLabel>{placeholder}</InputLabel>

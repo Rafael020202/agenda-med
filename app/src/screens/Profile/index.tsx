@@ -11,7 +11,7 @@ import {
   Scroller,
 } from './styles';
 
-import { SelectInput, InfoInput } from '@/components';
+import { InfoSelectInput, InfoInput } from '@/components';
 
 import ArrowLeft from '@/assets/arrow_left.svg';
 
@@ -44,7 +44,7 @@ export const Profile: React.FC = () => {
             onChangeText={() => true}
           />
 
-          <SelectInput placeholder="Estado" />
+          <InfoSelectInput placeholder="Estado" />
 
           <InfoInput
             placeholder="Cidade"
