@@ -11,6 +11,6 @@ export const Scroller = styled.ScrollView`
 `;
 
 export const ListArea = styled.View`
-  margin-top: 10px;
+  margin-top: 30px;
   margin-bottom: 30px;
 `;
