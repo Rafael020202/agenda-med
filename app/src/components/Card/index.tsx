@@ -8,7 +8,6 @@ import {
   SeeProfileButton,
   SeeProfileButtonText,
   UserName,
-  UserSpecialty,
 } from './styles';
 
 export const Card = ({ data }) => {
@@ -18,8 +17,6 @@ export const Card = ({ data }) => {
 
       <InfoArea>
         <UserName>{data.name}</UserName>
-
-        <UserSpecialty>{data.specialty}</UserSpecialty>
 
         <Stars stars={data.stars} showNumber={true} />
 
