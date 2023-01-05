@@ -11,9 +11,8 @@ import {
   Scroller,
 } from './styles';
 
-import { SignInput } from '@/components';
-import Email from '@/assets/email.svg';
-import Person from '@/assets/person.svg';
+import { SelectInput, InfoInput } from '@/components';
+
 import ArrowLeft from '@/assets/arrow_left.svg';
 
 export const Profile: React.FC = () => {
@@ -27,17 +26,41 @@ export const Profile: React.FC = () => {
         }}
       >
         <UserInfoArea>
-          <SignInput
-            IconSvg={Person}
+          <InfoInput
             placeholder="Nome"
-            value={''}
+            value={'Marina Rodrigues'}
             onChangeText={() => true}
           />
 
-          <SignInput
-            IconSvg={Email}
+          <InfoInput
             placeholder="E-mail"
-            value={''}
+            value={'luizrafael391@gmail.com'}
+            onChangeText={() => true}
+          />
+
+          <InfoInput
+            placeholder="CEP"
+            value={'18133210'}
+            onChangeText={() => true}
+          />
+
+          <SelectInput placeholder="Estado" />
+
+          <InfoInput
+            placeholder="Cidade"
+            value={'São Roque'}
+            onChangeText={() => true}
+          />
+
+          <InfoInput
+            placeholder="Endereço"
+            value={'Rua paschoal belmonte'}
+            onChangeText={() => true}
+          />
+
+          <InfoInput
+            placeholder="Número"
+            value={'210'}
             onChangeText={() => true}
           />
 
